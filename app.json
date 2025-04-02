@@ -1,6 +1,6 @@
 
 {
-  "name": "RAVEN-BOT",
+  "name": "𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓",
   "description": "I don't know what I'm doing",
   "keywords": [
     "bot",
@@ -17,11 +17,11 @@
   ],
   "website": "https://github.com/HunterNick2/RAVEN-BOT#readme",
   "repository": "https://github.com/HunterNick2/RAVEN-BOT.git",
-  "logo": "https://telegra.ph/file/eebe191a0520a79979b34.jpg",
+  "logo": "https://files.catbox.moe/s5nuh3.jpg",
   "success_url": "/",
   "env": {
     "PREFIX": {
-      "description": "Prefix of RAVEN-BOT Ex: . , / , # , & etc. Put any symbol or leave it blank",
+      "description": "𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓 Ex: . , / , # , & etc. Put any symbol or leave it blank",
       "required": false
 
     },
