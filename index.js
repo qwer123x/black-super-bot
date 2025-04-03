@@ -248,7 +248,7 @@ if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
       console.log(color("Congrats, RAVEN-BOT has successfully connected to this server", "green"));
       console.log(color("Follow me on Instagram as Nick_hunter9", "red"));
       console.log(color("Text the bot number with menu to check my command list"));
-      client.sendMessage(client.user.id, { text: `𝗕𝗼𝘁 𝗵𝗮𝘀 𝗦𝘁𝗮𝗿𝘁𝗲𝗱 » » »【𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧】 ` });
+      client.sendMessage(client.user.id, { text: `holla » » »【𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓】 ` });
     }
   });
 
