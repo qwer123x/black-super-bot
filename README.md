@@ -74,7 +74,7 @@ Linking/Pairing:
 
 ## License
 
-[MIT License](https://github.com/HunterNick2/RAVEN-BOT/blob/main/LICENSE)
+[MIT License]((https://github.com/Blackie254/black-super-bot)/LICENSE)
 
 Copyright (c) 2025 𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓  
 
