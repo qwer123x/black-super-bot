@@ -56,7 +56,8 @@ Linking/Pairing:
 ###  𝗗𝗘𝗣𝗟𝗢𝗬 𝗢𝗡 𝗛𝗘𝗥𝗢𝗞𝗨:
 
 
- ***[![Tap to deploy on heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https://github.com/Blackie254/black-super-bot)***
+ 
+ ***[![Tap to deploy on heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https://github.com/Blackie254/black-super-bot&template=https://github.com/Blackie254/black-super-bot.git)***
  
 
     
