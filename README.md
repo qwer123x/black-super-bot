@@ -15,9 +15,9 @@
 </p>
 <p align="center">
 <a href="https://github.com/HunterNick2?tab=followers"><img title="Followers" src="https://img.shields.io/github/followers/HunterNick2?label=Followers&style=social"></a>
-<a href="https://github.com/HunterNick2/RAVEN-BOT/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/HunterNick2/RAVEN-BOT?&style=social"></a>
-<a href="https://github.com/HunterNick2/RAVEN-BOT/network/members"><img title="Fork" src="https://img.shields.io/github/forks/HunterNick2/RAVEN-BOT?style=social"></a>
-<a href="https://github.com/HunterNick2/RAVEN-BOT/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/HunterNick2/RAVEN-BOT?label=Watching&style=social"></a>
+<a href="https://github.com/Blackie254/black-super-bot/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/Blackie254/black-super-bot?&style=social"></a>
+<a href="https://github.com/Blackie254/black-super-bot/network/members"><img title="Fork" src="https://img.shields.io/github/forks/Blackie254/black-super-bot?style=social"></a>
+<a href="https://github.com/Blackie254/black-super-bot/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/Blackie254/black-super-bot?label=Watching&style=social"></a>
 </p>
  
 
