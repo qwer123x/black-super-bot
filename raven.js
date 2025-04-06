@@ -1108,7 +1108,7 @@ const cheerio = require('cheerio');
 		      var mumaker = require("mumaker");
 		     
 		      if (!text || text == "") {
-    m.reply("Example usage: " + prefix + "Noel myself");
+    m.reply("Example usage: " + prefix + "Blacy myself");
     return;
   } 
   try {
@@ -1210,7 +1210,7 @@ m.reply("*Wait a moment...*");
 	      case 'neon':{
 		var mumaker = require("mumaker");
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Neon Nick");
+      m.reply("Example Usage : " + prefix + "Neon Blacky");
       return;
     }
      try {
@@ -1276,7 +1276,7 @@ m.reply("*Wait a moment...*");
 	      case 'typography': {
 		      var mumaker = require("mumaker");
 		          if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Typography Nick");
+      m.reply("Example Usage : " + prefix + "Typography Merchant");
       return;
     }
      try {
@@ -1298,7 +1298,7 @@ m.reply("*Wait a moment...*");
 	      case 'purple': {
 		 var mumaker = require("mumaker");
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "purple Nick");
+      m.reply("Example Usage : " + prefix + "purple Blacky");
       return;
     }
      try {
@@ -1366,7 +1366,7 @@ m.reply("*Wait a moment...*");
 	      case '1917': {
 		     var mumaker = require("mumaker"); 
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "1917 Hunter");
+      m.reply("Example Usage : " + prefix + "1917 Black-merchant");
       return;
     }
 	try {
