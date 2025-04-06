@@ -3663,9 +3663,9 @@ break;
                         externalAdReply: {
                             showAdAttribution: true,
                             title: '𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓',
-                            body: 'https://chat.whatsapp.com/DefN96lXQ4i5iO1wDDeu2C',
+                            body: 'https://whatsapp.com/channel/0029VaxCd13DzgTGK42G292X',
                             thumbnailUrl: 'https://i.imgur.com/YpHG3eT.jpeg',
-                            sourceUrl: 'https://chat.whatsapp.com/DefN96lXQ4i5iO1wDDeu2C',
+                            sourceUrl: 'https://whatsapp.com/channel/0029VaxCd13DzgTGK42G292X',
                             mediaType: 1,
                             renderLargerThumbnail: true
                         }
@@ -3689,7 +3689,7 @@ break;
                 mimetype: "application/vnd.android.package-archive",
                 contextInfo: {
         externalAdReply: {
-          title: `RAVEN-BOT`,
+          title: `BLACKMACHANT-BOT`,
           body: `${tylor.BK9.name}`,
           thumbnailUrl: `${tylor.BK9.icon}`,
           sourceUrl: `${tylor.BK9.dllink}`,
