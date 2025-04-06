@@ -3664,7 +3664,7 @@ break;
                             showAdAttribution: true,
                             title: '𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓',
                             body: 'https://whatsapp.com/channel/0029VaxCd13DzgTGK42G292X',
-                            thumbnailUrl: 'https://i.imgur.com/YpHG3eT.jpeg',
+                            thumbnailUrl: 'https://i.imgur.com/gmIbuTZ.jpeg',
                             sourceUrl: 'https://whatsapp.com/channel/0029VaxCd13DzgTGK42G292X',
                             mediaType: 1,
                             renderLargerThumbnail: true
