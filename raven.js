@@ -575,12 +575,8 @@ let cap = `𝗛𝗲𝘆 𝘁𝗵𝗲𝗿𝗲😁, ${getGreeting()}\n\n╭══�
 ┃✫│ 🔴𝗜𝗺𝗮𝗴𝗲
 ┃✬│ 🔴𝗦𝘆𝘀𝘁𝗲𝗺
 ┃✫╰═───────◇───────═╯
-┃ 🕸️𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓!🕸️
-┃
-┃*_I'm not ‼️GOOD with people
-┃and I probably don't want to
-┃interact with them🕴🏻❌_*
-┃ 
+┃ 🕸️𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓🕸️
+┃ 𝗠𝗮𝗱𝗲 𝗢𝗻 𝗘𝗮𝗿𝘁𝗵 𝗕𝘆 𝗛𝘂𝗺𝗮𝗻𝘀!
 ╰══────────────────══╯`;
 
 if (menu === 'VIDEO') {
