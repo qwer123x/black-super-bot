@@ -3147,7 +3147,7 @@ const title = data.result.title;
 //========================================================================================================================//		      
  case 'sc': case 'script': case 'repo':
 
- client.sendMessage(m.chat, { image: { url: `https://i.imgur.com/RCKKWhD.jpeg` }, caption: 
+ client.sendMessage(m.chat, { image: { url: `https://files.catbox.moe/ztt0xb.jpg` }, caption: 
 ` Hello👋 *${pushname}*,You can deploy 𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓using the GitHub link below 𓅂\n\nFork and give us a star✨.\n\n https://github.com/Blackie254/black-super-bot\n\nLink with your whatsapp using pairing link below\n\nhttps://https:https://blacks-mf.onrender.com\n\nCopy the session_id and Fill in the required Variables before Deploy\n\nEnjoy and have fun with ░𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓░\n\n𝗠𝗮𝗱𝗲 𝗼𝗻 𝗲𝗮𝗿𝘁𝗵 𝗯𝘆 𝗛𝘂𝗺𝗮𝗻𝘀👨‍💻!`},{quoted : m });
 
    break;
