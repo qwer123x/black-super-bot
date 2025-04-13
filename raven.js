@@ -5,6 +5,7 @@ const path = require('path');
 const util = require("util");
 global.axios = require('axios').default
 const chalk = require("chalk");
+const uploadToCatbox = require('./lib/catbox.js');
 const speed = require("performance-now");
 const Genius = require("genius-lyrics");
 const yts = require("yt-search");
