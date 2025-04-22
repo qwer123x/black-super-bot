@@ -1740,6 +1740,24 @@ m.reply("*Wait a moment...*");
           }
       }
                 break;
+//========================================================================================================================//
+case "gpt4":
+           {
+        if (!text) return reply(`Hello there, what's your question?`);
+          let d = await fetchJson(
+            `https://bk9.fun/ai/Aoyo?q=${text}`
+          );
+          if (!d.BK9) {
+            return reply(
+              "An error occurred while fetching the AI chatbot response. Please try again later."
+            );
+          } else {
+            reply(d.BK9);
+          }
+		     }
+                      break;
+
+//========================================================================================================================//
 
 //========================================================================================================================//		      
 		      case "gpt2":
