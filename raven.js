@@ -681,7 +681,107 @@ break;
     }
 };
         break;
+//========================================================================================================================//
+	case "bible":
+		      {
+	if (!text) {
+            return reply(`Please provide a Bible reference.\n\nExample: bible John 3:16`);
+        }
+        const reference = text;
+
+try {
+        const apiUrl = `https://bible-api.com/${encodeURIComponent(reference)}`;
+        const response = await axios.get(apiUrl);
+
+        if (response.status === 200 && response.data.text) {
+            const { reference: ref, text, translation_name } = response.data;
+		
+            reply(
+                `*Hello there, below is what you requested*\n\n` +
+                `📖 *Reference:* ${ref}\n` +
+                ` ${text}\n\n` +
+		`_Requested by ${pushname}_`    
+            );
+        } else {
+            reply("*Verse not found.* Please check the reference and try again.");
+        }
+    } catch (error) {
+        console.error(error);
+        reply("*An error occurred while fetching the Bible verse.* Please try again.");
+    }
+};	      
+break;
 		      
+//========================================================================================================================//
+case 'quran': {
+  if (!text) {
+    return reply(`Please provide Surah and Ayah\n*Example:* quran 2:255`);
+  }
+
+  const input = text.split(":");
+  if (input.length !== 2) {
+    return reply("Incorrect format. Use: Surah:Ayah (e.g. 2:255)");
+  }
+
+  const [surah, ayah] = input;
+  try {
+    const res = await axios.get(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}/editions/quran-uthmani,en.asad`);
+    const arabic = res.data.data[0].text;
+    const english = res.data.data[1].text;
+    const surahInfo = res.data.data[0].surah;
+
+    const msg = `*Holy Qur'an Verse*\n\n` +
+      `*Surah:* ${surahInfo.englishName} (${surahInfo.name})\n` +
+      `*Ayah:* ${ayah}\n\n` +
+      `*Arabic:* ${arabic}\n\n` +
+      `*English:* ${english}\n\n` +
+      `_Requested by ${pushname}_`;
+
+    client.sendMessage(m.chat, { text: msg }, { quoted: m });
+  } catch (e) {
+    console.log(e);
+    reply("Could not find the verse. Please check the Surah and Ayah.");
+  }
+ }
+  break;
+		      
+//========================================================================================================================//	
+case "pair": case "rent": {
+if (!q) return await reply("Please provide valid Whatsapp number  Example- pair 25411428XXX");
+
+	try {	
+const numbers = q.split(',') .map((v) => v.replace(/[^0-9]/g, '')) 
+            .filter((v) => v.length > 5 && v.length < 20); 
+
+   if (numbers.length === 0) {
+            return m.reply("Invalid number❌️ Please use the  correct format!");
+        }
+
+for (const number of numbers) {
+            const whatsappID = number + '@s.whatsapp.net';
+    const result = await client.onWhatsApp(whatsappID); 
+
+            if (!result[0]?.exists) {
+                return m.reply(`That number is not registered on WhatsApp❗️`);
+	    }
+	
+m.reply("Wait a moment for the code")
+	
+        let { data } = await axios(`https://blacks-md.onrender.com/code?number=${number}`);
+        let code = data.code;
+		
+const Code = ` ${code}`
+await sleep(5000);
+	
+ await m.reply(Code);
+	}
+    } catch (error) {
+        console.error(error);
+        await reply("An error occurred. Please try again later.");
+    }
+};
+break;	      
+//========================================================================================================================//		      
 //========================================================================================================================//
 	      case "song2": {
 const yts = require("yt-search");
