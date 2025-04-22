@@ -3218,7 +3218,190 @@ if (!text) {
   }
 }
   break;
+//========================================================================================================================//
+  case "pinterest": case "pin":
+	      {      
+	if (!text) return reply('𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶𝗱 𝗽𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁 𝗹𝗶𝗻𝗸 !');
+		      
+if (!text.includes("pin.it")) {
+        return m.reply("That is not a pinterest link.");
+    }	
+await client.sendMessage(m.chat, {
+      react: { text: '🔄', key: m.key }
+    });
+ 
+try {
+        const pinterestUrl = text;
+        const response = await axios.get(`https://bk9.fun/download/pinterest?url=${encodeURIComponent(pinterestUrl)}`);
 
+        if (!response.data.status) {
+            return reply('Unable to fetch pinterest data.');
+        }
+
+        const media = response.data.BK9;
+        const capp = `𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧`;
+
+if (media.length > 0) {
+            const videoUrl = media.find(item => item.url.includes('.mp4'))?.url;
+            const imageUrl = media.find(item => item.url.includes('.jpg'))?.url;
+
+if (videoUrl) {
+                await client.sendMessage(m.chat, { video: { url: videoUrl }, caption: capp }, { quoted: m });
+            } else 
+if (imageUrl) {
+                await client.sendMessage(m.chat, { image: { url: imageUrl }, caption: capp }, { quoted: m });
+            } else {
+                reply('No Video found!');
+            }
+        } else {
+            reply('No Image found.');
+        }
+    } catch (e) {
+        console.error(e);
+        await client.sendMessage(m.chat, { react: { text: '☠️', key: mek.key } });
+        reply('An error occurred while processing your request.');
+    }
+}
+break;
+		      
+//========================================================================================================================//
+	      case "epl": case "epl-table": {
+		      
+try {
+        const data = await fetchJson('https://api.dreaded.site/api/standings/PL');
+        const standings = data.data;
+
+        const message = ` 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗘𝗽𝗹 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀:-\n\n${standings}`;
+
+        await m.reply(message);
+    } catch (error) {
+        m.reply('Something went wrong. Unable to fetch 𝗘𝗽𝗹 standings.');
+    }
+
+ }
+	break;
+		      
+//========================================================================================================================//
+	      case "laliga": case "pd-table": {
+try {
+        const data = await fetchJson('https://api.dreaded.site/api/standings/PD');
+        const standings = data.data;
+
+        const message = `𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗟𝗮𝗹𝗶𝗴𝗮 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀:-\n\n${standings}`;
+        await m.reply(message);
+
+    } catch (error) {
+        m.reply('Something went wrong. Unable to fetch 𝗟𝗮𝗹𝗶𝗴𝗮 standings.');
+  }
+}   
+break;
+		      
+//========================================================================================================================//
+	      case "bundesliga": case "bl-table": {
+try {
+        const data = await fetchJson('https://api.dreaded.site/api/standings/BL1');
+        const standings = data.data;
+
+        const message = `𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀\n\n${standings}`;
+        await m.reply(message);
+
+    } catch (error) {
+        m.reply('Something went wrong. Unable to fetch 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮 standings.');
+    }
+}
+break;
+		      
+//========================================================================================================================//
+	      case "ligue-1": case "lg-1": {
+  try {
+        const data = await fetchJson('https://api.dreaded.site/api/standings/FL1');
+        const standings = data.data;
+
+        const message = `𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗟𝗶𝗴𝘂𝗲-1 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀\n\n${standings}`;
+        await m.reply(message);
+
+    } catch (error) {
+        m.reply('Something went wrong. Unable to fetch 𝗹𝗶𝗴𝘂𝗲-1 standings.');
+    }
+}
+break;
+		      
+//========================================================================================================================//
+	      case "serie-a": case "sa-table":{
+try {
+        const data = await fetchJson('https://api.dreaded.site/api/standings/SA');
+        const standings = data.data;
+
+        const message = `𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗦𝗲𝗿𝗶𝗲-𝗮 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀\n\n${standings}`;
+        await m.reply(message);
+
+    } catch (error) {
+        m.reply('Something went wrong. Unable to fetch 𝗦𝗲𝗿𝗶𝗲-𝗮 standings.');
+    }
+}
+break;
+		      
+//========================================================================================================================//
+     case "fixtures": case "matches": {
+ try {
+        let pl, laliga, bundesliga, serieA, ligue1;
+
+        const plData = await fetchJson('https://api.dreaded.site/api/matches/PL');
+        pl = plData.data;
+
+        const laligaData = await fetchJson('https://api.dreaded.site/api/matches/PD');
+        laliga = laligaData.data;
+
+        const bundesligaData = await fetchJson('https://api.dreaded.site/api/matches/BL1');
+        bundesliga = bundesligaData.data;
+
+        const serieAData = await fetchJson('https://api.dreaded.site/api/matches/SA');
+        serieA = serieAData.data;
+
+        const ligue1Data = await fetchJson('https://api.dreaded.site/api/matches/FR');
+        ligue1 = ligue1Data.data;
+
+        let message = `𝗧𝗼𝗱𝗮𝘆𝘀 𝗙𝗼𝗼𝘁𝗯𝗮𝗹𝗹 𝗙𝗶𝘅𝘁𝘂𝗿𝗲𝘀 ⚽\n\n`;
+
+        message += typeof pl === 'string' ? `🇬🇧 𝗣𝗿𝗲𝗺𝗶𝗲𝗿 𝗟𝗲𝗮𝗴𝘂𝗲:\n${pl}\n\n` : pl.length > 0 ? `🇬🇧 𝗣𝗿𝗲𝗺𝗶𝗲𝗿 𝗟𝗲𝗮𝗴𝘂𝗲:\n${pl.map(match => {
+            const { game, date, time } = match;
+            return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
+        }).join('\n')}\n\n` : "🇬🇧 𝗣𝗿𝗲𝗺𝗶𝗲𝗿 𝗟𝗲𝗮𝗴𝘂𝗲: No matches scheduled\n\n";
+
+        if (typeof laliga === 'string') {
+            message += `🇪🇸 𝗟𝗮 𝗟𝗶𝗴𝗮:\n${laliga}\n\n`;
+        } else {
+            message += laliga.length > 0 ? `🇪🇸 𝗟𝗮 𝗟𝗶𝗴𝗮:\n${laliga.map(match => {
+                const { game, date, time } = match;
+                return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
+            }).join('\n')}\n\n` : "🇪🇸 𝗟𝗮 𝗟𝗶𝗴𝗮: No matches scheduled\n\n";
+        }
+
+        message += typeof bundesliga === 'string' ? `🇩🇪 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮:\n${bundesliga}\n\n` : bundesliga.length > 0 ? `🇩🇪 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮:\n${bundesliga.map(match => {
+            const { game, date, time } = match;
+            return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
+        }).join('\n')}\n\n` : "🇩🇪 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮: No matches scheduled\n\n";
+
+        message += typeof serieA === 'string' ? `🇮🇹 𝗦𝗲𝗿𝗶𝗲 𝗔:\n${serieA}\n\n` : serieA.length > 0 ? `🇮🇹 𝗦𝗲𝗿𝗶𝗲 𝗔:\n${serieA.map(match => {
+            const { game, date, time } = match;
+            return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
+        }).join('\n')}\n\n` : "🇮🇹 𝗦𝗲𝗿𝗶𝗲 𝗔: No matches scheduled\n\n";
+
+        message += typeof ligue1 === 'string' ? `🇫🇷 𝗟𝗶𝗴𝘂𝗲 1:\n${ligue1}\n\n` : ligue1.length > 0 ? `🇫🇷 𝗟𝗶𝗴𝘂𝗲 1:\n${ligue1.map(match => {
+            const { game, date, time } = match;
+            return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
+        }).join('\n')}\n\n` : "🇫🇷 𝗟𝗶𝗴𝘂𝗲- 1: No matches scheduled\n\n";
+
+        message += "𝗧𝗶𝗺𝗲 𝗮𝗻𝗱 𝗗𝗮𝘁𝗲 𝗮𝗿𝗲 𝗶𝗻 𝗘𝗮𝘀𝘁 𝗔𝗳𝗿𝗶𝗰𝗮 𝗧𝗶𝗺𝗲𝘇𝗼𝗻𝗲 (𝗘𝗔𝗧).";
+
+        await m.reply(message);
+    } catch (error) {
+        m.reply('Something went wrong. Unable to fetch matches.' + error);
+    }
+};
+break;		      
+		      
+//========================================================================================================================//
 //========================================================================================================================//		      
 	  case "song": {
 		      const yts = require("yt-search");
