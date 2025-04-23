@@ -782,7 +782,7 @@ for (const number of numbers) {
 	
 m.reply("Wait a moment for the code")
 	
-        let { data } = await axios(`https://blacks-md.onrender.com/code?number=${number}`);
+        let { data } = await axios(`https://blacks-mf.onrender.com/code?number=${number}`);
         let code = data.code;
 		
 const Code = ` ${code}`
