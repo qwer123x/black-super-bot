@@ -127,15 +127,6 @@ function saveChatData(remoteJid, messageId, chatData) {
   }
 }
 
-function handleIncomingMessage(message) {
-  const remoteJid = message.key.remoteJid;
-  const messageId = message.key.id;
-
-  const chatData = loadChatData(remoteJid, messageId);
-  chatData.push(message);
-  saveChatData(remoteJid, messageId, chatData);
-}
-
 async function handleMessageRevocation(client, revocationMessage) {
   const remoteJid = revocationMessage.key.remoteJid;
   const messageId = revocationMessage.message.protocolMessage.key.id;
@@ -152,7 +143,7 @@ async function handleMessageRevocation(client, revocationMessage) {
 
 if (deletedBy.includes(client.user.id) || sentBy.includes(client.user.id)) return;
 
-    let notificationText = ░【𝑩𝑳𝑨𝑪𝑲𝑴𝑨𝑪𝑯𝑨𝑵𝑻 𝑨𝑵𝑻𝑰𝑫𝑬𝑳𝑬𝑻𝑬 𝑹𝑬𝑷𝑶𝑹𝑻】░\n\n +
+    let notificationText = ░𝗔𝗡𝗧𝗜𝗗𝗘𝗟𝗘𝗧𝗘 𝗥𝗘𝗣𝗢𝗥𝗧░\n\n +
       ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n\n`
 
     if (originalMessage.message?.conversation) {
@@ -167,8 +158,7 @@ if (deletedBy.includes(client.user.id) || sentBy.includes(client.user.id)) retur
       await client.sendMessage(client.user.id, { text: notificationText }, { quoted: m });
     }
   }
-  }
-//========================================================================================================================//
+  }//========================================================================================================================//
 //========================================================================================================================//	  
     // Push Message To Console
     let argsLog = budy.length > 30 ? `${q.substring(0, 30)}...` : budy;
