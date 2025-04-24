@@ -20,6 +20,7 @@ const author = process.env.STICKER_AUTHOR ||'𝗕𝗢𝗧';
 const packname = process.env.STICKER_PACKNAME || '𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓';
 const antitag = process.env.ANTITAG || 'TRUE';
 const dev = process.env.DEV || '254114283550';
+const menulink = process.env.MENU_LINK || 'https://files.catbox.moe/jxxwms.jpeg';
 const menu = process.env.MENU_TYPE || 'VIDEO';
 const DevRaven = dev.split(",");
 const badwordkick = process.env.BAD_WORD_KICK || 'FALSE';
