@@ -127,6 +127,9 @@ function saveChatData(remoteJid, messageId, chatData) {
   }
 }
 
+function handleIncomingMessage(message) {
+}
+
 async function handleMessageRevocation(client, revocationMessage) {
   const remoteJid = revocationMessage.key.remoteJid;
   const messageId = revocationMessage.message.protocolMessage.key.id;
