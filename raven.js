@@ -126,7 +126,6 @@ function saveChatData(remoteJid, messageId, chatData) {
     console.error('Error saving chat data:', error);
   }
 }
-
 function handleIncomingMessage(message) {
   const remoteJid = message.key.remoteJid;
   const messageId = message.key.id;
