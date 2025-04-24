@@ -147,12 +147,12 @@ async function handleMessageRevocation(client, revocationMessage) {
     const deletedBy = revocationMessage.participant || revocationMessage.key.participant || revocationMessage.key.remoteJid;
     const sentBy = originalMessage.key.participant || originalMessage.key.remoteJid;
 
-    const deletedByFormatted = `@${deletedBy.split('@')[0]}`;
-    const sentByFormatted = `@${sentBy.split('@')[0]}`;
+    const deletedByFormatted = @${deletedBy.split('@')[0]};
+    const sentByFormatted = @${sentBy.split('@')[0]};
 
 if (deletedBy.includes(client.user.id) || sentBy.includes(client.user.id)) return;
 
-    let notificationText = `holla » » 【𝑩𝑳𝑨𝑪𝑲𝑴𝑨𝑪𝑯𝑨𝑵𝑻 𝑨𝑵𝑻𝑰𝑫𝑬𝑳𝑬𝑻𝑬 𝑹𝑬𝑷𝑶𝑹𝑻】\n\n` +
+    let notificationText = ░【𝑩𝑳𝑨𝑪𝑲𝑴𝑨𝑪𝑯𝑨𝑵𝑻 𝑨𝑵𝑻𝑰𝑫𝑬𝑳𝑬𝑻𝑬 𝑹𝑬𝑷𝑶𝑹𝑻】░\n\n +
       ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n\n`
 
     if (originalMessage.message?.conversation) {
@@ -167,7 +167,7 @@ if (deletedBy.includes(client.user.id) || sentBy.includes(client.user.id)) retur
       await client.sendMessage(client.user.id, { text: notificationText }, { quoted: m });
     }
   }
-}
+  }
 //========================================================================================================================//
 //========================================================================================================================//	  
     // Push Message To Console
