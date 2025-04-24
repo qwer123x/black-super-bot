@@ -1,5 +1,5 @@
 const welcomegoodbye = process.env.WELCOMEGOODBYE || 'FALSE'; 
-const botname = process.env.BOTNAME || '𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧';
+const botname = process.env.BOTNAME || '𝑩𝑳𝑨𝑪𝑲𝑴𝑨𝑪𝑯𝑨𝑵𝑻';
 
 const Events = async (client, Nick) => {
     
@@ -15,7 +15,7 @@ const Events = async (client, Nick) => {
             try {
                 dpuser = await client.profilePictureUrl(num, "image");
             } catch {
-                dpuser = "https://files.catbox.moe/xmlidu.jpg";
+                dpuser = "https://files.catbox.moe/s5nuh3.jpg";
             }
 
             if (Nick.action === "add") {
@@ -32,7 +32,7 @@ const Events = async (client, Nick) => {
             } else if (Nick.action === "remove") {
                 let userName2 = num;
 
-                let Lefttext = `@${userName2.split("@")[0]} Has run out of data. Let's pray for the poor😔.\n\nAnyway Goodbye Hustler.`;
+                let Lefttext = `@${userName2.split("@")[0]} Goodbye we shall miss you😔.\n\nAnyway Goodbye .`;
                 if (welcomegoodbye === 'TRUE') {
                     await client.sendMessage(Nick.id, {
                         image: { url: dpuser },
