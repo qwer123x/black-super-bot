@@ -1,4 +1,4 @@
-// Copy paste 😁😁
+// Copy paste 🤏🏼😁😁
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require("@whiskeysockets/baileys");
 const fs = require("fs");
 const path = require('path');
@@ -758,6 +758,58 @@ case 'quran': {
   }
  }
   break;
+//========================================================================================================================//
+	      case "song": {
+const yts = require("yt-search");
+const fetch = require("node-fetch"); 
+
+  try {   
+    if (!text) {
+      return m.reply("What song you want to download.");
+    }
+
+    let search = await yts(text);
+    if (!search.all.length) {
+      return reply("No results found for your query.");
+    }
+    let link = search.all[0].url; 
+
+    const apiUrl = `https://keith-api.vercel.app/download/dlmp3?url=${link}`;
+
+    let response = await fetch(apiUrl);
+    let data = await response.json();
+
+    if (data.status && data.result) {
+      const audioData = {
+        title: data.result.title,
+        downloadUrl: data.result.downloadUrl,
+        thumbnail: search.all[0].thumbnail,
+        format: data.result.format,
+        quality: data.result.quality,
+      };
+
+await client.sendMessage(
+        m.chat,
+        {
+          audio: { url: audioData.downloadUrl },
+          mimetype: "audio/mp4",
+        },
+        { quoted: m }
+      );
+
+      return;
+    } else {
+      
+      return reply("Unable to fetch the song. Please try again later.");
+    }
+  } catch (error) {
+    
+    return reply(`An error occurred: `);
+  }
+}
+	break;
+
+//========================================================================================================================//
 		      
 //========================================================================================================================//	
 case "pair": case "rent": {
@@ -3424,7 +3476,7 @@ break;
 		      
 //========================================================================================================================//
 //========================================================================================================================//		      
-	  case "song": {
+	  case "song3": {
 		      const yts = require("yt-search");
 
     try {
