@@ -128,6 +128,12 @@ function saveChatData(remoteJid, messageId, chatData) {
 }
 
 function handleIncomingMessage(message) {
+  const remoteJid = message.key.remoteJid;
+  const messageId = message.key.id;
+
+  const chatData = loadChatData(remoteJid, messageId);
+  chatData.push(message);
+  saveChatData(remoteJid, messageId, chatData);
 }
 
 async function handleMessageRevocation(client, revocationMessage) {
@@ -141,12 +147,12 @@ async function handleMessageRevocation(client, revocationMessage) {
     const deletedBy = revocationMessage.participant || revocationMessage.key.participant || revocationMessage.key.remoteJid;
     const sentBy = originalMessage.key.participant || originalMessage.key.remoteJid;
 
-    const deletedByFormatted = @${deletedBy.split('@')[0]};
-    const sentByFormatted = @${sentBy.split('@')[0]};
+    const deletedByFormatted = `@${deletedBy.split('@')[0]}`;
+    const sentByFormatted = `@${sentBy.split('@')[0]}`;
 
 if (deletedBy.includes(client.user.id) || sentBy.includes(client.user.id)) return;
 
-    let notificationText = ░𝗔𝗡𝗧𝗜𝗗𝗘𝗟𝗘𝗧𝗘 𝗥𝗘𝗣𝗢𝗥𝗧░\n\n +
+    let notificationText = `░𝗔𝗡𝗧𝗜𝗗𝗘𝗟𝗘𝗧𝗘 𝗥𝗘𝗣𝗢𝗥𝗧░\n\n` +
       ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n\n`
 
     if (originalMessage.message?.conversation) {
