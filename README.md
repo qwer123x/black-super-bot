@@ -61,7 +61,7 @@ Linking/Pairing:
 
 
  
- ***[![Tap to deploy on heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https://github.com/Blackie254/black-super-bot&template=https://github.com/Blackie254/black-super-bot.git)***
+ ***[![Tap to deploy on heroku](https://www.herokucdn.com/deploy/button.svg)](https://blacks-progressive-center.vercel.app/)***
  
 
     
