@@ -1,4 +1,4 @@
-# 𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓
+# 𝐁𝐋𝐀𝐂𝐊-𝐌𝐃 𝐁𝐎𝐓
 <div align="center">
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Black+Ops+One&size=50&pause=1000&color=1BAFBAFF&center=true&width=910&height=100&lines=HI+THIS+IS+BLACKMACHANT-MD;A+MULTI+DEVICE+WHATSAPP+BOT;SCRIPTED+BY+BLACKIE+TECH;STAR+AND+FORK+OUR+REPO" alt="Typing SVG" /></a>
   </p>
