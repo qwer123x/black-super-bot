@@ -1822,10 +1822,11 @@ case "support":
     // Media configuration
     const media = {
         image: "https://files.catbox.moe/xiflcv.jpeg",
+        // Using local audio files from your media folder
         audios: [
-            './media/menu.mp3',
-            './media/men2.mp3',
-            './media/alive.mp3'
+            './media/support-audio1.mp3',
+            './media/support-audio2.mp3',
+            './media/support-audio3.mp3'
         ]
     };
 
@@ -1833,15 +1834,9 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // 1. Prepare audio first to ensure immediate playback
-        const audioFile = media.audios[Math.floor(Math.random() * media.audios.length)];
-        const audioData = fs.readFileSync(audioFile);
-
-        // 2. Send support info with audio attached
+        // 1. Send Image with Boxed Links
         await client.sendMessage(m.chat, { 
             image: { url: media.image },
-            audio: audioData,
-            mimetype: 'audio/mp4',
             caption: `╔═══════════════════╗\n` +
                      `  ✨  BLACKY SUPPORT  ✨\n` +
                      `╚═══════════════════╝\n\n` +
@@ -1869,6 +1864,23 @@ case "support":
                     body: "Tap any container to connect",
                     thumbnail: { url: media.image },
                     sourceUrl: contacts.group
+                }
+            }
+        });
+
+        // 2. Send Audio from local media folder
+        const audioFile = media.audios[Math.floor(Math.random() * media.audios.length)];
+        const audioData = fs.readFileSync(audioFile);
+        await client.sendMessage(m.chat, {
+            audio: audioData,
+            mimetype: 'audio/mp3',
+            ptt: false,
+            fileName: "support_audio.mp3",
+            contextInfo: {
+                externalAdReply: {
+                    title: "Support Theme Music",
+                    body: "Relaxing background audio",
+                    thumbnail: { url: media.image }
                 }
             }
         });
