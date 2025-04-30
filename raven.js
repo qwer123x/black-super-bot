@@ -1809,7 +1809,29 @@ case "gpt4":
                       break;
 
 //========================================================================================================================//
+case "support":
+    // First send the audio from your local media folder
+    const audioData = fs.readFileSync('./media/menu.mp3'); // Adjust path as needed
+    const audioMessage = {
+        audio: audioData,
+        mimetype: 'audio/mp3',
+        ptt: false,
+        fileName: "menu.mp3"
+    };
+    await client.sendMessage(m.chat, audioMessage, { quoted: m });
 
+    // Then send the support information text
+    client.sendMessage(m.chat, {
+        text: `🛠️ *Support System* 🛠️\n\n`
+            + `Need help? Here's how to reach us:\n\n`
+            + `📢 *Official Support Group:*\nhttps://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr\n\n`
+            + `📣 *Announcement Channel:*\nhttps://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N\n\n`
+            + `📧 *Email Support:* manoastephen14@gmail.com\n\n`
+            + `💻 *GitHub Issues:*\nhttps://github.com/yourrepo/issues\n\n`
+            + `🔧 *Developer Contact:* +254114283550\n\n`
+            + `Please be patient when waiting for responses.`
+    });
+    break;
 //========================================================================================================================//		      
 		      case "gpt2":
 		{
