@@ -1819,13 +1819,13 @@ case "support":
         developer: "254114283550"
     };
 
-    // Media URLs (Catbox)
+    // Media configuration
     const media = {
         image: "https://files.catbox.moe/xiflcv.jpeg",
         audios: [
-            'https://files.catbox.moe/h4drkm.mp3', // Piano
-            'https://files.catbox.moe/h4drkm.mp3', // Ambient
-            'https://files.catbox.moe/h4drkm.mp3'  // Chimes
+            './media/menu.mp3',
+            './media/men2.mp3',
+            './media/alive.mp3'
         ]
     };
 
@@ -1833,9 +1833,15 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // 1. Send Image with Boxed Links (Support Information)
+        // 1. Prepare audio first to ensure immediate playback
+        const audioFile = media.audios[Math.floor(Math.random() * media.audios.length)];
+        const audioData = fs.readFileSync(audioFile);
+
+        // 2. Send support info with audio attached
         await client.sendMessage(m.chat, { 
             image: { url: media.image },
+            audio: audioData,
+            mimetype: 'audio/mp4',
             caption: `╔═══════════════════╗\n` +
                      `  ✨  BLACKY SUPPORT  ✨\n` +
                      `╚═══════════════════╝\n\n` +
@@ -1863,24 +1869,6 @@ case "support":
                     body: "Tap any container to connect",
                     thumbnail: { url: media.image },
                     sourceUrl: contacts.group
-                }
-            }
-        });
-
-        // 2. Add small delay to ensure proper message order
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        // 3. Send Audio After Support Information
-        const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
-        await client.sendMessage(m.chat, {
-            audio: { url: audioUrl },
-            mimetype: 'audio/mp3',
-            ptt: false,
-            contextInfo: {
-                externalAdReply: {
-                    title: "Support Theme Music",
-                    body: "Relaxing background audio",
-                    thumbnail: { url: media.image }
                 }
             }
         });
