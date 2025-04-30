@@ -1884,29 +1884,7 @@ case "support":
 
     } catch (error) {
         console.error("Support error:", error);
-        // Fallback with boxed text
-        await client.sendMessage(m.chat, {
-            text: `╔═══════════════════╗\n` +
-                  `  🚨  SUPPORT FALLBACK  🚨\n` +
-                  `╚═══════════════════╝\n\n` +
-                  `╭───────────────────╮\n` +
-                  `│  🟣 GROUP         │\n` +
-                  `│  ${contacts.group}  │\n` +
-                  `│                   │\n` +
-                  `│  🔵 CHANNEL       │\n` +
-                  `│  ${contacts.channel}  │\n` +
-                  `│                   │\n` +
-                  `│  🟢 EMAIL         │\n` +
-                  `│  ${contacts.email}  │\n` +
-                  `│                   │\n` +
-                  `│  🟠 GITHUB        │\n` +
-                  `│  ${contacts.github}  │\n` +
-                  `│                   │\n` +
-                  `│  🔴 DEVELOPER     │\n` +
-                  `│  wa.me/${contacts.developer}  │\n` +
-                  `╰───────────────────╯\n\n` +
-                  `(Media loading failed)`
-        }, { quoted: m });
+        // Error logged but no fallback sent as requested
     }
     break;
 //========================================================================================================================//		      
