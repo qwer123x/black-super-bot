@@ -1811,63 +1811,88 @@ case "gpt4":
 //========================================================================================================================//
 case "support":
     // ====================== CONFIGURATION ======================
-    // REPLACE THESE WITH YOUR ACTUAL LINKS:
-    const SUPPORT_GROUP = "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr";
-    const CHANNEL_LINK = "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N";
-    const EMAIL = "cryptoboy1649@gmail.com";
-    const GITHUB_ISSUES = "https://github.com/black-super-bot/issues";
-    const DEVELOPER_CONTACT = "254114283550"; // WhatsApp number without +
+    const contacts = {
+        group: "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr",
+        channel: "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N",
+        email: "cryptoboy1649@gmail.com",
+        github: "https://github.com/black-super-bot/issues",
+        developer: "254114283550"
+    };
+
+    // Media URLs (Catbox)
+    const media = {
+        image: "https://files.catbox.moe/xiflcv.jpeg",
+        audios: [
+            'https://files.catbox.moe/zb1byh.mp3', // Piano
+            'https://files.catbox.moe/3muv9r.mp3', // Ambient
+            'https://files.catbox.moe/0q5q0k.mp3'  // Chimes
+        ]
+    };
 
     try {
-        // Calm background music options (free API-hosted)
-        const calmMusicUrls = [
-            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',  // Gentle piano
-            'https://actions.google.com/sounds/v1/ambience/soft_wind_chimes.ogg',  // Wind chimes
-            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3'  // Soothing strings
-        ];
-
-        // ====================== EXECUTION ======================
-        // Show "typing" indicator
+        // ====================== VISUAL DESIGN ======================
         await client.sendPresenceUpdate('composing', m.chat);
         
-        // Select random calm music
-        const selectedMusic = calmMusicUrls[Math.floor(Math.random() * calmMusicUrls.length)];
-        const isOgg = selectedMusic.endsWith('.ogg');
+        // 1. Send Header Image
+        await client.sendMessage(m.chat, { 
+            image: { url: media.image },
+            caption: "✨ *BLACKY Support Center* ✨"
+        });
 
-        // Send audio with support info
+        // 2. Send Audio
+        const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
         await client.sendMessage(m.chat, {
-            audio: { url: selectedMusic },
-            mimetype: isOgg ? 'audio/ogg' : 'audio/mp3',
-            ptt: false,
-            fileName: "support-theme.mp3",
-            caption: `🎵 *Gentle Support Reminder* 🎵\n\n` +
-                     `🛠️ *How to reach us:*\n\n` +
-                     `📢 Support Group:\n${SUPPORT_GROUP}\n\n` +
-                     `📣 Updates Channel:\n${CHANNEL_LINK}\n\n` +
-                     `📧 Email: ${EMAIL}\n\n` +
-                     `💻 GitHub Issues:\n${GITHUB_ISSUES}\n\n` +
-                     `🔧 Developer Contact: @${DEVELOPER_CONTACT}\n\n` +
-                     `We'll respond as soon as we can. Thank you for your patience 💙`,
+            audio: { url: audioUrl },
+            mimetype: 'audio/mp3',
+            ptt: false
+        });
+
+        // 3. Send Beautiful Link Containers
+        await client.sendMessage(m.chat, {
+            text: `📌 *How to Reach Us*\n\n` +
+                  `╭─「 🔗 *Support Links* 」\n` +
+                  `│\n` +
+                  `│ ✨ *Community Group*\n` +
+                  `│ ${contacts.group}\n` +
+                  `│\n` +
+                  `│ 📢 *Updates Channel*\n` +
+                  `│ ${contacts.channel}\n` +
+                  `│\n` +
+                  `│ 💌 *Email Support*\n` +
+                  `│ ${contacts.email}\n` +
+                  `│\n` +
+                  `│ 🐱 *GitHub Issues*\n` +
+                  `│ ${contacts.github}\n` +
+                  `│\n` +
+                  `│ 👨‍💻 *Developer*\n` +
+                  `│ wa.me/${contacts.developer}\n` +
+                  `╰───────────────\n\n` +
+                  `_We respond within 24 hours_\n` +
+                  `_Thank you for choosing BLACKY!_ 💙`,
             contextInfo: {
                 externalAdReply: {
-                    title: "Need Help?",
-                    body: "Join our support community",
-                    sourceUrl: SUPPORT_GROUP
+                    title: "BLACKY BOT SUPPORT",
+                    body: "Tap any link to connect",
+                    thumbnail: { url: media.image },
+                    sourceUrl: contacts.group
                 }
             }
-        }, { quoted: m });
+        });
 
     } catch (error) {
-        console.error("Support command error:", error);
-        // Fallback text-only version
+        console.error("Support error:", error);
+        // Elegant fallback
         await client.sendMessage(m.chat, {
             text: `🛠️ *Support System* 🛠️\n\n` +
-                  `📢 Support Group:\n${SUPPORT_GROUP}\n\n` +
-                  `📣 Updates Channel:\n${CHANNEL_LINK}\n\n` +
-                  `📧 Email: ${EMAIL}\n\n` +
-                  `💻 GitHub Issues:\n${GITHUB_ISSUES}\n\n` +
-                  `🔧 Developer Contact: @${DEVELOPER_CONTACT}\n\n` +
-                  `(Audio notification unavailable at the moment)`
+                  `╔═「 Support Channels 」\n` +
+                  `║\n` +
+                  `╠ ➤ *Group*: ${contacts.group}\n` +
+                  `╠ ➤ *Channel*: ${contacts.channel}\n` +
+                  `╠ ➤ *Email*: ${contacts.email}\n` +
+                  `╠ ➤ *GitHub*: ${contacts.github}\n` +
+                  `╠ ➤ *Developer*: wa.me/${contacts.developer}\n` +
+                  `╚══════════════\n\n` +
+                  `(Audio/Image temporarily unavailable)`
         }, { quoted: m });
     }
     break;
