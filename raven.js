@@ -1810,15 +1810,15 @@ case "gpt4":
 
 //========================================================================================================================//
 case "support":
-    try {
-        // ====================== CONFIGURATION ======================
-        // REPLACE THESE WITH YOUR ACTUAL LINKS:
-        const SUPPORT_GROUP = "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr";
-        const CHANNEL_LINK = "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N";
-        const EMAIL = "cryptoboy1649@gmail.com";
-        const GITHUB_ISSUES = "https://github.com/black-super-bot/issues";
-        const DEVELOPER_CONTACT = "254114283550"; // WhatsApp number without +
+    // ====================== CONFIGURATION ======================
+    // REPLACE THESE WITH YOUR ACTUAL LINKS:
+    const SUPPORT_GROUP = "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr";
+    const CHANNEL_LINK = "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N";
+    const EMAIL = "cryptoboy1649@gmail.com";
+    const GITHUB_ISSUES = "https://github.com/black-super-bot/issues";
+    const DEVELOPER_CONTACT = "254114283550"; // WhatsApp number without +
 
+    try {
         // Calm background music options (free API-hosted)
         const calmMusicUrls = [
             'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',  // Gentle piano
