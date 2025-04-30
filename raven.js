@@ -1830,69 +1830,82 @@ case "support":
     };
 
     try {
-        // ====================== VISUAL DESIGN ======================
+        // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
-        
-        // 1. Send Header Image
+
+        // 1. Send Image with Boxed Links
         await client.sendMessage(m.chat, { 
             image: { url: media.image },
-            caption: "✨ *BLACKY Support Center* ✨"
-        });
-
-        // 2. Send Audio
-        const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
-        await client.sendMessage(m.chat, {
-            audio: { url: audioUrl },
-            mimetype: 'audio/mp3',
-            ptt: false
-        });
-
-        // 3. Send Beautiful Link Containers
-        await client.sendMessage(m.chat, {
-            text: `📌 *How to Reach Us*\n\n` +
-                  `╭─「 🔗 *Support Links* 」\n` +
-                  `│\n` +
-                  `│ ✨ *Community Group*\n` +
-                  `│ ${contacts.group}\n` +
-                  `│\n` +
-                  `│ 📢 *Updates Channel*\n` +
-                  `│ ${contacts.channel}\n` +
-                  `│\n` +
-                  `│ 💌 *Email Support*\n` +
-                  `│ ${contacts.email}\n` +
-                  `│\n` +
-                  `│ 🐱 *GitHub Issues*\n` +
-                  `│ ${contacts.github}\n` +
-                  `│\n` +
-                  `│ 👨‍💻 *Developer*\n` +
-                  `│ wa.me/${contacts.developer}\n` +
-                  `╰───────────────\n\n` +
-                  `_We respond within 24 hours_\n` +
-                  `_Thank you for choosing BLACKY!_ 💙`,
+            caption: `╔═══════════════════╗\n` +
+                     `  ✨  BLACKY SUPPORT  ✨\n` +
+                     `╚═══════════════════╝\n\n` +
+                     `╭───────────────────╮\n` +
+                     `│  🟣 GROUP         │\n` +
+                     `│  ${contacts.group}  │\n` +
+                     `│                   │\n` +
+                     `│  🔵 CHANNEL       │\n` +
+                     `│  ${contacts.channel}  │\n` +
+                     `│                   │\n` +
+                     `│  🟢 EMAIL         │\n` +
+                     `│  ${contacts.email}  │\n` +
+                     `│                   │\n` +
+                     `│  🟠 GITHUB        │\n` +
+                     `│  ${contacts.github}  │\n` +
+                     `│                   │\n` +
+                     `│  🔴 DEVELOPER     │\n` +
+                     `│  wa.me/${contacts.developer}  │\n` +
+                     `╰───────────────────╯\n\n` +
+                     `📞 Response within 24 hours\n` +
+                     `💙 Thank you for choosing BLACKY!`,
             contextInfo: {
                 externalAdReply: {
-                    title: "BLACKY BOT SUPPORT",
-                    body: "Tap any link to connect",
+                    title: "OFFICIAL SUPPORT",
+                    body: "Tap any container to connect",
                     thumbnail: { url: media.image },
                     sourceUrl: contacts.group
                 }
             }
         });
 
+        // 2. Send Audio Separately
+        const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
+        await client.sendMessage(m.chat, {
+            audio: { url: audioUrl },
+            mimetype: 'audio/mp3',
+            ptt: false,
+            contextInfo: {
+                externalAdReply: {
+                    title: "Support Theme Music",
+                    body: "Relaxing background audio",
+                    thumbnail: { url: media.image }
+                }
+            }
+        });
+
     } catch (error) {
         console.error("Support error:", error);
-        // Elegant fallback
+        // Fallback with boxed text
         await client.sendMessage(m.chat, {
-            text: `🛠️ *Support System* 🛠️\n\n` +
-                  `╔═「 Support Channels 」\n` +
-                  `║\n` +
-                  `╠ ➤ *Group*: ${contacts.group}\n` +
-                  `╠ ➤ *Channel*: ${contacts.channel}\n` +
-                  `╠ ➤ *Email*: ${contacts.email}\n` +
-                  `╠ ➤ *GitHub*: ${contacts.github}\n` +
-                  `╠ ➤ *Developer*: wa.me/${contacts.developer}\n` +
-                  `╚══════════════\n\n` +
-                  `(Audio/Image temporarily unavailable)`
+            text: `╔═══════════════════╗\n` +
+                  `  🚨  SUPPORT FALLBACK  🚨\n` +
+                  `╚═══════════════════╝\n\n` +
+                  `╭───────────────────╮\n` +
+                  `│  🟣 GROUP         │\n` +
+                  `│  ${contacts.group}  │\n` +
+                  `│                   │\n` +
+                  `│  🔵 CHANNEL       │\n` +
+                  `│  ${contacts.channel}  │\n` +
+                  `│                   │\n` +
+                  `│  🟢 EMAIL         │\n` +
+                  `│  ${contacts.email}  │\n` +
+                  `│                   │\n` +
+                  `│  🟠 GITHUB        │\n` +
+                  `│  ${contacts.github}  │\n` +
+                  `│                   │\n` +
+                  `│  🔴 DEVELOPER     │\n` +
+                  `│  wa.me/${contacts.developer}  │\n` +
+                  `╰───────────────────╯\n\n` +
+                  `(Media loading failed)`
         }, { quoted: m });
     }
     break;
