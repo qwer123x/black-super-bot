@@ -1810,27 +1810,66 @@ case "gpt4":
 
 //========================================================================================================================//
 case "support":
-    // First send the audio from your local media folder
-    const audioData = fs.readFileSync('./Media/men2.mp3'); // Adjust path as needed
-    const audioMessage = {
-        audio: audioData,
-        mimetype: 'audio/mp4',
-        ptt: false,
-        fileName: "'./Media/men2.mp3'"
-    };
-    await client.sendMessage(m.chat, audioMessage, { quoted: m });
+    try {
+        // ====================== CONFIGURATION ======================
+        // REPLACE THESE WITH YOUR ACTUAL LINKS:
+        const SUPPORT_GROUP = "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr";
+        const CHANNEL_LINK = "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N";
+        const EMAIL = "cryptoboy1649@gmail.com";
+        const GITHUB_ISSUES = "https://github.com/black-super-bot/issues";
+        const DEVELOPER_CONTACT = "254114283550"; // WhatsApp number without +
 
-    // Then send the support information text
-    client.sendMessage(m.chat, {
-        text: `🛠️ *Support System* 🛠️\n\n`
-            + `Need help? Here's how to reach us:\n\n`
-            + `📢 *Official Support Group:*\nhttps://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr\n\n`
-            + `📣 *Announcement Channel:*\nhttps://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N\n\n`
-            + `📧 *Email Support:* manoastephen14@gmail.com\n\n`
-            + `💻 *GitHub Issues:*\nhttps://github.com/yourrepo/issues\n\n`
-            + `🔧 *Developer Contact:* +254114283550\n\n`
-            + `Please be patient when waiting for responses.`
-    });
+        // Calm background music options (free API-hosted)
+        const calmMusicUrls = [
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',  // Gentle piano
+            'https://actions.google.com/sounds/v1/ambience/soft_wind_chimes.ogg',  // Wind chimes
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3'  // Soothing strings
+        ];
+
+        // ====================== EXECUTION ======================
+        // Show "typing" indicator
+        await client.sendPresenceUpdate('composing', m.chat);
+        
+        // Select random calm music
+        const selectedMusic = calmMusicUrls[Math.floor(Math.random() * calmMusicUrls.length)];
+        const isOgg = selectedMusic.endsWith('.ogg');
+
+        // Send audio with support info
+        await client.sendMessage(m.chat, {
+            audio: { url: selectedMusic },
+            mimetype: isOgg ? 'audio/ogg' : 'audio/mp3',
+            ptt: false,
+            fileName: "support-theme.mp3",
+            caption: `🎵 *Gentle Support Reminder* 🎵\n\n` +
+                     `🛠️ *How to reach us:*\n\n` +
+                     `📢 Support Group:\n${SUPPORT_GROUP}\n\n` +
+                     `📣 Updates Channel:\n${CHANNEL_LINK}\n\n` +
+                     `📧 Email: ${EMAIL}\n\n` +
+                     `💻 GitHub Issues:\n${GITHUB_ISSUES}\n\n` +
+                     `🔧 Developer Contact: @${DEVELOPER_CONTACT}\n\n` +
+                     `We'll respond as soon as we can. Thank you for your patience 💙`,
+            contextInfo: {
+                externalAdReply: {
+                    title: "Need Help?",
+                    body: "Join our support community",
+                    sourceUrl: SUPPORT_GROUP
+                }
+            }
+        }, { quoted: m });
+
+    } catch (error) {
+        console.error("Support command error:", error);
+        // Fallback text-only version
+        await client.sendMessage(m.chat, {
+            text: `🛠️ *Support System* 🛠️\n\n` +
+                  `📢 Support Group:\n${SUPPORT_GROUP}\n\n` +
+                  `📣 Updates Channel:\n${CHANNEL_LINK}\n\n` +
+                  `📧 Email: ${EMAIL}\n\n` +
+                  `💻 GitHub Issues:\n${GITHUB_ISSUES}\n\n` +
+                  `🔧 Developer Contact: @${DEVELOPER_CONTACT}\n\n` +
+                  `(Audio notification unavailable at the moment)`
+        }, { quoted: m });
+    }
     break;
 //========================================================================================================================//		      
 		      case "gpt2":
