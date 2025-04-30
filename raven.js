@@ -1823,9 +1823,9 @@ case "support":
     const media = {
         image: "https://files.catbox.moe/xiflcv.jpeg",
         audios: [
-            'https://files.catbox.moe/zb1byh.mp3', // Piano
-            'https://files.catbox.moe/3muv9r.mp3', // Ambient
-            'https://files.catbox.moe/0q5q0k.mp3'  // Chimes
+            'https://files.catbox.moe/h4drkm.mp3', // Piano
+            'https://files.catbox.moe/h4drkm.mp3', // Ambient
+            'https://files.catbox.moe/h4drkm.mp3'  // Chimes
         ]
     };
 
