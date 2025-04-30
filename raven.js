@@ -1833,7 +1833,7 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // 1. Send Image with Boxed Links
+        // 1. Send Image with Boxed Links (Support Information)
         await client.sendMessage(m.chat, { 
             image: { url: media.image },
             caption: `╔═══════════════════╗\n` +
@@ -1867,7 +1867,10 @@ case "support":
             }
         });
 
-        // 2. Send Audio Separately
+        // 2. Add small delay to ensure proper message order
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // 3. Send Audio After Support Information
         const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
         await client.sendMessage(m.chat, {
             audio: { url: audioUrl },
