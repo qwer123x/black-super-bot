@@ -1811,12 +1811,12 @@ case "gpt4":
 //========================================================================================================================//
 case "support":
     // First send the audio from your local media folder
-    const audioData = fs.readFileSync('./media/menu.mp3'); // Adjust path as needed
+    const audioData = fs.readFileSync('./Media/men2.mp3'); // Adjust path as needed
     const audioMessage = {
         audio: audioData,
-        mimetype: 'audio/mp3',
+        mimetype: 'audio/mp4',
         ptt: false,
-        fileName: "menu.mp3"
+        fileName: "'./Media/men2.mp3'"
     };
     await client.sendMessage(m.chat, audioMessage, { quoted: m });
 
