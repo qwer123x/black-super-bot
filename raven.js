@@ -1824,9 +1824,9 @@ case "support":
         image: "https://files.catbox.moe/xiflcv.jpeg",
         // Using local audio files from your media folder
         audios: [
-            './media/support-audio1.mp3',
-            './media/support-audio2.mp3',
-            './media/support-audio3.mp3'
+            './media/menu.mp3',
+            './media/alive.mp3',
+            './media/men2.mp3'
         ]
     };
 
@@ -1873,7 +1873,7 @@ case "support":
         const audioData = fs.readFileSync(audioFile);
         await client.sendMessage(m.chat, {
             audio: audioData,
-            mimetype: 'audio/mp3',
+            mimetype: 'audio/mp4',
             ptt: false,
             fileName: "support_audio.mp3",
             contextInfo: {
