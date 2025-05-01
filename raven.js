@@ -1722,13 +1722,13 @@ case "support":
         developer: "254114283550"
     };
 
-    // Media configuration (Catbox links)
+    // Media configuration
     const media = {
         image: "https://files.catbox.moe/xiflcv.jpeg",
         audios: [
-            'https://files.catbox.moe/3aodq6.mp3', // Piano
-            'https://files.catbox.moe/9mfy9a.mp3', // Ambient
-            'https://files.catbox.moe/5x9x9x.mp3'  // Chimes
+            './media/menu.mp3',
+            './media/alive.mp3',
+            './media/men2.mp3'
         ]
     };
 
@@ -1736,74 +1736,70 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // 1. First send support information
+        // 1. Send Image with Premium Container Design
         await client.sendMessage(m.chat, { 
             image: { url: media.image },
-            caption: ▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n +
-                     ▌       🅱🅻🅰🅲🅺🆈 🆂🆄🅿🅿🅾🆁🆃       ▐\n +
-                     ▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟪 𝗚𝗥𝗢𝗨𝗣               ▐\n +
-                     ▌  ${contacts.group}  ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟦 𝗖𝗛𝗔𝗡𝗡𝗘𝗟             ▐\n +
-                     ▌  ${contacts.channel}  ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟩 𝗘𝗠𝗔𝗜𝗟               ▐\n +
-                     ▌  ${contacts.email}        ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟧 𝗚𝗜𝗧𝗛𝗨𝗕              ▐\n +
-                     ▌  ${contacts.github}  ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟥 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥           ▐\n +
-                     ▌  wa.me/${contacts.developer}          ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ✦ 24-Hour Response Guarantee ✦\n +
-                     ⚡ BLACKY BOT v3.0 ⚡,
+            caption: ╭━━━━━━━━━━━━━━━━━━━━━╮\n +
+                     ┃　　　　　★ BLACKY SUPPORT ★　　　　　┃\n +
+                     ╰━━━━━━━━━━━━━━━━━━━━━╯\n\n +
+                     ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n +
+                     ◈ GROUP ◈\n +
+                     ┏───────────────────┓\n +
+                     ┃ ${contacts.group} ┃\n +
+                     ┗───────────────────┛\n\n +
+                     ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n +
+                     ◈ CHANNEL ◈\n +
+                     ┏───────────────────┓\n +
+                     ┃ ${contacts.channel} ┃\n +
+                     ┗───────────────────┛\n\n +
+                     ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n +
+                     ◈ EMAIL ◈\n +
+                     ┏───────────────────┓\n +
+                     ┃ ${contacts.email}  ┃\n +
+                     ┗───────────────────┛\n\n +
+                     ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n +
+                     ◈ GITHUB ◈\n +
+                     ┏───────────────────┓\n +
+                     ┃ ${contacts.github} ┃\n +
+                     ┗───────────────────┛\n\n +
+                     ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n +
+                     ◈ DEVELOPER ◈\n +
+                     ┏───────────────────┓\n +
+                     ┃ wa.me/${contacts.developer}      ┃\n +
+                     ┗───────────────────┛\n\n +
+                     ✧･ﾟ: *✧･ﾟ:* 24-HOUR RESPONSE *:･ﾟ✧*:･ﾟ✧\n +
+                     ✦ BLACKY BOT ✦ EST. 2024 ✦,
             contextInfo: {
                 externalAdReply: {
-                    title: "PREMIUM SUPPORT SYSTEM",
-                    body: "Tap to join support channel",
+                    title: "BLACKY PREMIUM SUPPORT",
+                    body: "Tap any section to connect",
                     thumbnail: { url: media.image },
-                    sourceUrl: contacts.channel
+                    sourceUrl: contacts.group
                 }
             }
         });
 
-        // 2. Then send audio separately (after support info)
-        const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
+        // 2. Send Audio (Modified to match menu command style)
+        const audioFile = media.audios[Math.floor(Math.random() * media.audios.length)];
         await client.sendMessage(m.chat, {
-            audio: { url: audioUrl },
-            mimetype: 'audio/mpeg',
+            audio: { url: audioFile }, // Changed to use direct file path
+            mimetype: 'audio/mpeg', // Changed to standard mpeg type
             ptt: false,
-            fileName: "BLACKY_SUPPORT_AUDIO.mp3",
+            fileName: "BLACKY_SUPPORT_THEME.mp3",
             contextInfo: {
                 externalAdReply: {
-                    title: "SUPPORT THEME MUSIC",
-                    body: "BLACKY BOT Official Audio",
+                    title: "BLACKY BOT",
+                    body: "Support System Audio",
                     thumbnail: { url: media.image },
-                    mediaType: 2,
-                    mediaUrl: contacts.channel,
-                    sourceUrl: contacts.channel
+                    mediaType: 2, // Audio message type
+                    mediaUrl: contacts.group,
+                    sourceUrl: contacts.group
                 }
             }
         });
 
     } catch (error) {
         console.error("Support error:", error);
-        // Minimal fallback
-        await client.sendMessage(m.chat, {
-            text: BLACKY SUPPORT\n\n +
-                  Group: ${contacts.group}\n +
-                  Channel: ${contacts.channel}\n +
-                  Email: ${contacts.email}\n +
-                  GitHub: ${contacts.github}\n +
-                  Developer: wa.me/${contacts.developer}
-        }, { quoted: m });
     }
     break;
 //========================================================================================================================//		      
