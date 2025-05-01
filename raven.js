@@ -1823,9 +1823,9 @@ case "support":
     const media = {
         image: "https://files.catbox.moe/xiflcv.jpeg",
         audios: [
-            'https://files.catbox.moe/h4drkm.mp3', // Piano
-            'https://files.catbox.moe/h4drkm.mp3', // Ambient
-            'https://files.catbox.moe/h4drkm.mp3'  // Chimes
+            'https://files.catbox.moe/3aodq6.mp3', // Piano
+            'https://files.catbox.moe/9mfy9a.mp3', // Ambient
+            'https://files.catbox.moe/5x9x9x.mp3'  // Chimes
         ]
     };
 
@@ -1833,12 +1833,9 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // 1. Send Combined Message with Image, Audio and Caption
-        const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
-        await client.sendMessage(m.chat, {
+        // 1. First send support information
+        await client.sendMessage(m.chat, { 
             image: { url: media.image },
-            audio: { url: audioUrl },
-            mimetype: 'audio/mpeg',
             caption: `▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n` +
                      `▌       🅱🅻🅰🅲🅺🆈 🆂🆄🅿🅿🅾🆁🆃       ▐\n` +
                      `▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟\n\n` +
@@ -1868,6 +1865,23 @@ case "support":
                 externalAdReply: {
                     title: "PREMIUM SUPPORT SYSTEM",
                     body: "Tap to join support channel",
+                    thumbnail: { url: media.image },
+                    sourceUrl: contacts.channel
+                }
+            }
+        });
+
+        // 2. Then send audio separately (after support info)
+        const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
+        await client.sendMessage(m.chat, {
+            audio: { url: audioUrl },
+            mimetype: 'audio/mpeg',
+            ptt: false,
+            fileName: "BLACKY_SUPPORT_AUDIO.mp3",
+            contextInfo: {
+                externalAdReply: {
+                    title: "SUPPORT THEME MUSIC",
+                    body: "BLACKY BOT Official Audio",
                     thumbnail: { url: media.image },
                     mediaType: 2,
                     mediaUrl: contacts.channel,
