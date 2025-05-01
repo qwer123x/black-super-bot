@@ -2499,30 +2499,50 @@ reply(resultt.stderr)
       break;
 
 //========================================================================================================================//		      
-		      case 'save': {
+case 'save': {
   const textL = m.text.toLowerCase();
   const quotedMessage = m.msg?.contextInfo?.quotedMessage;
 
-if (quotedMessage && textL.startsWith(prefix + "save") && !m.quoted.chat.includes("status@broadcast")) {
+  // Check if user quoted a status
+  if (quotedMessage && textL.startsWith(prefix + "save") && !m.quoted.chat.includes("status@broadcast")) {
     return m.reply("You did not tag a status media to save.");
   }
 
-if (Owner && quotedMessage && textL.startsWith(prefix + "save") && m.quoted.chat.includes("status@broadcast")) {
+  // Process status save
+  if (quotedMessage && textL.startsWith(prefix + "save") && m.quoted.chat.includes("status@broadcast")) {
     
-    if (quotedMessage.imageMessage) {
-      let imageCaption = quotedMessage.imageMessage.caption;
-      let imageUrl = await client.downloadAndSaveMediaMessage(quotedMessage.imageMessage);
-      client.sendMessage(m.chat, { image: { url: imageUrl }, caption: imageCaption });
-    }
-
-    if (quotedMessage.videoMessage) {
-      let videoCaption = quotedMessage.videoMessage.caption;
-      let videoUrl = await client.downloadAndSaveMediaMessage(quotedMessage.videoMessage);
-      client.sendMessage(m.chat, { video: { url: videoUrl }, caption: videoCaption });
-    }
-     }
+    try {
+      // Send to user's DM (private chat)
+      const userDM = m.sender; // Get user's personal chat ID
+      
+      if (quotedMessage.imageMessage) {
+        let imageCaption = quotedMessage.imageMessage.caption || "Saved from status";
+        let imageUrl = await client.downloadAndSaveMediaMessage(quotedMessage.imageMessage);
+        await client.sendMessage(userDM, { 
+          image: { url: imageUrl }, 
+          caption: 📸 Saved Status\n${imageCaption} 
+        });
       }
-    break;
+
+      if (quotedMessage.videoMessage) {
+        let videoCaption = quotedMessage.videoMessage.caption || "Saved from status";
+        let videoUrl = await client.downloadAndSaveMediaMessage(quotedMessage.videoMessage);
+        await client.sendMessage(userDM, { 
+          video: { url: videoUrl }, 
+          caption: 🎥 Saved Status\n${videoCaption} 
+        });
+      }
+
+      // Confirm in original chat
+      await m.reply("✅ Status saved to your DM!");
+
+    } catch (error) {
+      console.error("Save error:", error);
+      await m.reply("❌ Failed to save status. Please try again.");
+    }
+  }
+}
+break;
 		      
 //========================================================================================================================//		      
 	      case 'gitclone': {
