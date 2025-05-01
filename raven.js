@@ -1822,7 +1822,6 @@ case "support":
     // Media configuration
     const media = {
         image: "https://files.catbox.moe/xiflcv.jpeg",
-        // Using local audio files from your media folder
         audios: [
             './media/menu.mp3',
             './media/alive.mp3',
@@ -1834,60 +1833,70 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // 1. Send Image with Boxed Links
+        // 1. Send Image with Premium Container Design
         await client.sendMessage(m.chat, { 
             image: { url: media.image },
-            caption: `╔═══════════════════╗\n` +
-                     `  ✨  BLACKY SUPPORT  ✨\n` +
-                     `╚═══════════════════╝\n\n` +
-                     `╭───────────────────╮\n` +
-                     `│  🟣 GROUP         │\n` +
-                     `│  ${contacts.group}  │\n` +
-                     `│                   │\n` +
-                     `│  🔵 CHANNEL       │\n` +
-                     `│  ${contacts.channel}  │\n` +
-                     `│                   │\n` +
-                     `│  🟢 EMAIL         │\n` +
-                     `│  ${contacts.email}  │\n` +
-                     `│                   │\n` +
-                     `│  🟠 GITHUB        │\n` +
-                     `│  ${contacts.github}  │\n` +
-                     `│                   │\n` +
-                     `│  🔴 DEVELOPER     │\n` +
-                     `│  wa.me/${contacts.developer}  │\n` +
-                     `╰───────────────────╯\n\n` +
-                     `📞 Response within 24 hours\n` +
-                     `💙 Thank you for choosing BLACKY!`,
+            caption: `╭━━━━━━━━━━━━━━━━━━━━━╮\n` +
+                     `┃　　　　　★ BLACKY SUPPORT ★　　　　　┃\n` +
+                     `╰━━━━━━━━━━━━━━━━━━━━━╯\n\n` +
+                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
+                     `◈ GROUP ◈\n` +
+                     `┏───────────────────┓\n` +
+                     `┃ ${contacts.group} ┃\n` +
+                     `┗───────────────────┛\n\n` +
+                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
+                     `◈ CHANNEL ◈\n` +
+                     `┏───────────────────┓\n` +
+                     `┃ ${contacts.channel} ┃\n` +
+                     `┗───────────────────┛\n\n` +
+                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
+                     `◈ EMAIL ◈\n` +
+                     `┏───────────────────┓\n` +
+                     `┃ ${contacts.email}  ┃\n` +
+                     `┗───────────────────┛\n\n` +
+                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
+                     `◈ GITHUB ◈\n` +
+                     `┏───────────────────┓\n` +
+                     `┃ ${contacts.github} ┃\n` +
+                     `┗───────────────────┛\n\n` +
+                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
+                     `◈ DEVELOPER ◈\n` +
+                     `┏───────────────────┓\n` +
+                     `┃ wa.me/${contacts.developer}      ┃\n` +
+                     `┗───────────────────┛\n\n` +
+                     `✧･ﾟ: *✧･ﾟ:* 24-HOUR RESPONSE *:･ﾟ✧*:･ﾟ✧\n` +
+                     `✦ BLACKY BOT ✦ EST. 2024 ✦`,
             contextInfo: {
                 externalAdReply: {
-                    title: "OFFICIAL SUPPORT",
-                    body: "Tap any container to connect",
+                    title: "BLACKY PREMIUM SUPPORT",
+                    body: "Tap any section to connect",
                     thumbnail: { url: media.image },
                     sourceUrl: contacts.group
                 }
             }
         });
 
-        // 2. Send Audio from local media folder
+        // 2. Send Audio (Modified to match menu command style)
         const audioFile = media.audios[Math.floor(Math.random() * media.audios.length)];
-        const audioData = fs.readFileSync(audioFile);
         await client.sendMessage(m.chat, {
-            audio: audioData,
-            mimetype: 'audio/mp4',
+            audio: { url: audioFile }, // Changed to use direct file path
+            mimetype: 'audio/mpeg', // Changed to standard mpeg type
             ptt: false,
-            fileName: "support_audio.mp3",
+            fileName: "BLACKY_SUPPORT_THEME.mp3",
             contextInfo: {
                 externalAdReply: {
-                    title: "Support Theme Music",
-                    body: "Relaxing background audio",
-                    thumbnail: { url: media.image }
+                    title: "BLACKY BOT",
+                    body: "Support System Audio",
+                    thumbnail: { url: media.image },
+                    mediaType: 2, // Audio message type
+                    mediaUrl: contacts.group,
+                    sourceUrl: contacts.group
                 }
             }
         });
 
     } catch (error) {
         console.error("Support error:", error);
-        // Error logged but no fallback sent as requested
     }
     break;
 //========================================================================================================================//		      
