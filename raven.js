@@ -1,6 +1,4 @@
 // Copy paste 🤏🏼😁😁
-const { handleEvents } = require('./antiDelete');
-handleEvents(client);
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require("@whiskeysockets/baileys");
 const fs = require("fs");
 const path = require('path');
@@ -98,15 +96,11 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
      const Rspeed = speed() - timestamp 
 //========================================================================================================================//
 //========================================================================================================================//
-const fs = require('fs');
-const path = require('path');
-
 const baseDir = 'message_data';
 if (!fs.existsSync(baseDir)) {
   fs.mkdirSync(baseDir);
 }
 
-// Message storage functions (unchanged from your original)
 function loadChatData(remoteJid, messageId) {
   const chatFilePath = path.join(baseDir, remoteJid, ${messageId}.json);
   try {
@@ -119,10 +113,13 @@ function loadChatData(remoteJid, messageId) {
 
 function saveChatData(remoteJid, messageId, chatData) {
   const chatDir = path.join(baseDir, remoteJid);
+
   if (!fs.existsSync(chatDir)) {
     fs.mkdirSync(chatDir, { recursive: true });
   }
+
   const chatFilePath = path.join(chatDir, ${messageId}.json);
+
   try {
     fs.writeFileSync(chatFilePath, JSON.stringify(chatData, null, 2));
   } catch (error) {
@@ -133,15 +130,16 @@ function saveChatData(remoteJid, messageId, chatData) {
 function handleIncomingMessage(message) {
   const remoteJid = message.key.remoteJid;
   const messageId = message.key.id;
+
   const chatData = loadChatData(remoteJid, messageId);
   chatData.push(message);
   saveChatData(remoteJid, messageId, chatData);
 }
 
-// Modified handler to work for all users
 async function handleMessageRevocation(client, revocationMessage) {
   const remoteJid = revocationMessage.key.remoteJid;
   const messageId = revocationMessage.message.protocolMessage.key.id;
+
   const chatData = loadChatData(remoteJid, messageId);
   const originalMessage = chatData[0];
 
@@ -149,44 +147,27 @@ async function handleMessageRevocation(client, revocationMessage) {
     const deletedBy = revocationMessage.participant || revocationMessage.key.participant || revocationMessage.key.remoteJid;
     const sentBy = originalMessage.key.participant || originalMessage.key.remoteJid;
 
-    // Skip if bot deleted the message
-    if (deletedBy.includes(client.user.id)) return;
-
     const deletedByFormatted = @${deletedBy.split('@')[0]};
     const sentByFormatted = @${sentBy.split('@')[0]};
 
-    let notificationText = ░holla » » 𝑩𝑳𝑨𝑪𝑲𝑴𝑨𝑪𝑯𝑨𝑵𝑻 𝑨𝑵𝑻𝑰𝑫𝑬𝑳𝑬𝑻𝑬 𝑹𝑬𝑷𝑶𝑹𝑻░\n\n +
-      ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n` +
-      ` 𝗦𝗲𝗻𝘁 𝗯𝘆: ${sentByFormatted}\n\n`;
+if (deletedBy.includes(client.user.id) || sentBy.includes(client.user.id)) return;
 
-    // Send to original sender's DM
+    let notificationText = ░holla » » 𝑩𝑳𝑨𝑪𝑲𝑴𝑨𝑪𝑯𝑨𝑵𝑻 𝑨𝑵𝑻𝑰𝑫𝑬𝑳𝑬𝑻𝑬 𝑹𝑬𝑷𝑶𝑹𝑻░\n\n +
+      ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n\n`
+
     if (originalMessage.message?.conversation) {
-      notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝘀𝘀𝗮𝗴𝗲: ${originalMessage.message.conversation}`;
-      await client.sendMessage(sentBy, { text: notificationText });
+      // Text message
+      const messageText = originalMessage.message.conversation;
+      notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝘀𝘀𝗮𝗴𝗲: ${messageText}`;
+      await client.sendMessage(client.user.id, { text: notificationText }, { quoted: m });
     } else if (originalMessage.message?.extendedTextMessage) {
-      notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗖𝗼𝗻𝘁𝗲𝗻𝘁: ${originalMessage.message.extendedTextMessage.text}`;
-      await client.sendMessage(sentBy, { text: notificationText });
+      // Extended text message (quoted messages)
+      const messageText = originalMessage.message.extendedTextMessage.text;
+      notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗖𝗼𝗻𝘁𝗲𝗻𝘁: ${messageText}`;
+      await client.sendMessage(client.user.id, { text: notificationText }, { quoted: m });
     }
   }
-}
-
-// Event listeners (should be in your main bot file)
-module.exports = {
-  handleEvents: (client) => {
-    client.ev.on('messages.upsert', ({ messages }) => {
-      messages.forEach(msg => handleIncomingMessage(msg));
-    });
-
-    client.ev.on('messages.update', async (updates) => {
-      for (const update of updates) {
-        if (update.update.messageStubType === 0 && 
-            update.update.messageStubParameters?.[0] === 'revoke') {
-          await handleMessageRevocation(client, update);
-        }
-      }
-    });
   }
-};
 //========================================================================================================================//
 //========================================================================================================================//	  
     // Push Message To Console
