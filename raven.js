@@ -101,8 +101,25 @@ if (!fs.existsSync(baseDir)) {
   fs.mkdirSync(baseDir);
 }
 
+// Store all messages
+client.ev.on('messages.upsert', async ({ messages }) => {
+  messages.forEach(message => {
+    handleIncomingMessage(message);
+  });
+});
+
+// Handle deleted messages
+client.ev.on('messages.update', async (updates) => {
+  for (const update of updates) {
+    if (update.update.messageStubType === 0 && 
+        update.update.messageStubParameters[0] === 'revoke') {
+      await handleMessageRevocation(client, update);
+    }
+  }
+});
+
 function loadChatData(remoteJid, messageId) {
-  const chatFilePath = path.join(baseDir, remoteJid, `${messageId}.json`);
+  const chatFilePath = path.join(baseDir, remoteJid, ${messageId}.json);
   try {
     const data = fs.readFileSync(chatFilePath, 'utf8');
     return JSON.parse(data) || [];
@@ -118,7 +135,7 @@ function saveChatData(remoteJid, messageId, chatData) {
     fs.mkdirSync(chatDir, { recursive: true });
   }
 
-  const chatFilePath = path.join(chatDir, `${messageId}.json`);
+  const chatFilePath = path.join(chatDir, ${messageId}.json);
 
   try {
     fs.writeFileSync(chatFilePath, JSON.stringify(chatData, null, 2));
@@ -130,6 +147,9 @@ function saveChatData(remoteJid, messageId, chatData) {
 function handleIncomingMessage(message) {
   const remoteJid = message.key.remoteJid;
   const messageId = message.key.id;
+
+  // Skip status broadcasts
+  if (remoteJid.includes('status@broadcast')) return;
 
   const chatData = loadChatData(remoteJid, messageId);
   chatData.push(message);
@@ -147,27 +167,47 @@ async function handleMessageRevocation(client, revocationMessage) {
     const deletedBy = revocationMessage.participant || revocationMessage.key.participant || revocationMessage.key.remoteJid;
     const sentBy = originalMessage.key.participant || originalMessage.key.remoteJid;
 
-    const deletedByFormatted = `@${deletedBy.split('@')[0]}`;
-    const sentByFormatted = `@${sentBy.split('@')[0]}`;
+    // Skip if bot deleted the message or is the sender
+    if (deletedBy.includes(client.user.id) || sentBy.includes(client.user.id)) return;
 
-if (deletedBy.includes(client.user.id) || sentBy.includes(client.user.id)) return;
+    const deletedByFormatted = @${deletedBy.split('@')[0]};
+    const sentByFormatted = @${sentBy.split('@')[0]};
 
-    let notificationText = `░holla » » 𝑩𝑳𝑨𝑪𝑲𝑴𝑨𝑪𝑯𝑨𝑵𝑻 𝑨𝑵𝑻𝑰𝑫𝑬𝑳𝑬𝑻𝑬 𝑹𝑬𝑷𝑶𝑹𝑻░\n\n` +
-      ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n\n`
+    let notificationText = ░holla » » 𝑩𝑳𝑨𝑪𝑲𝑴𝑨𝑪𝑯𝑨𝑵𝑻 𝑨𝑵𝑻𝑰𝑫𝑬𝑳𝑬𝑻𝑬 𝑹𝑬𝑷𝑶𝑹𝑻░\n\n +
+      ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n` +
+      ` 𝗦𝗲𝗻𝘁 𝗯𝘆: ${sentByFormatted}\n\n`;
+
+    // Send to original sender's DM instead of bot owner
+    const recipient = sentBy; 
 
     if (originalMessage.message?.conversation) {
-      // Text message
       const messageText = originalMessage.message.conversation;
       notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝘀𝘀𝗮𝗴𝗲: ${messageText}`;
-      await client.sendMessage(client.user.id, { text: notificationText }, { quoted: m });
-    } else if (originalMessage.message?.extendedTextMessage) {
-      // Extended text message (quoted messages)
+      await client.sendMessage(recipient, { text: notificationText });
+    } 
+    else if (originalMessage.message?.extendedTextMessage) {
       const messageText = originalMessage.message.extendedTextMessage.text;
       notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗖𝗼𝗻𝘁𝗲𝗻𝘁: ${messageText}`;
-      await client.sendMessage(client.user.id, { text: notificationText }, { quoted: m });
+      await client.sendMessage(recipient, { text: notificationText });
+    }
+    else if (originalMessage.message?.imageMessage) {
+      const imageBuffer = await client.downloadMediaMessage(originalMessage);
+      notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗜𝗺𝗮𝗴𝗲`;
+      await client.sendMessage(recipient, { 
+        image: imageBuffer, 
+        caption: notificationText 
+      });
+    }
+    else if (originalMessage.message?.videoMessage) {
+      const videoBuffer = await client.downloadMediaMessage(originalMessage);
+      notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗩𝗶𝗱𝗲𝗼`;
+      await client.sendMessage(recipient, { 
+        video: videoBuffer, 
+        caption: notificationText 
+      });
     }
   }
-  }
+}
 //========================================================================================================================//
 //========================================================================================================================//	  
     // Push Message To Console
