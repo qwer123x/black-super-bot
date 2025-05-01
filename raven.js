@@ -2505,31 +2505,29 @@ case 'save': {
 
   // Check if user quoted a status
   if (quotedMessage && textL.startsWith(prefix + "save") && !m.quoted.chat.includes("status@broadcast")) {
-    return m.reply("You did not tag a status media to save.");
+    return m.reply("❌ You must reply to a status to save it");
   }
 
-  // Process status save
-  if (quotedMessage && textL.startsWith(prefix + "save") && m.quoted.chat.includes("status@broadcast")) {
-    
+  if (Owner && quotedMessage && textL.startsWith(prefix + "save") && m.quoted.chat.includes("status@broadcast")) {
     try {
-      // Send to user's DM (private chat)
+      // Send to user's DM instead of group chat
       const userDM = m.sender; // Get user's personal chat ID
-      
+
       if (quotedMessage.imageMessage) {
         let imageCaption = quotedMessage.imageMessage.caption || "Saved from status";
-        let imageUrl = await client.downloadAndSaveMediaMessage(quotedMessage.imageMessage);
+        let imageBuffer = await client.downloadMediaMessage(m.quoted);
         await client.sendMessage(userDM, { 
-          image: { url: imageUrl }, 
-          caption: 📸 Saved Status\n${imageCaption} 
+          image: imageBuffer, 
+          caption: imageCaption 
         });
       }
 
       if (quotedMessage.videoMessage) {
         let videoCaption = quotedMessage.videoMessage.caption || "Saved from status";
-        let videoUrl = await client.downloadAndSaveMediaMessage(quotedMessage.videoMessage);
+        let videoBuffer = await client.downloadMediaMessage(m.quoted);
         await client.sendMessage(userDM, { 
-          video: { url: videoUrl }, 
-          caption: 🎥 Saved Status\n${videoCaption} 
+          video: videoBuffer, 
+          caption: videoCaption 
         });
       }
 
@@ -2542,8 +2540,7 @@ case 'save': {
     }
   }
 }
-break;
-		      
+break;		      
 //========================================================================================================================//		      
 	      case 'gitclone': {
 		      if (!text) return m.reply(`Where is the link?`)
