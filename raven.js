@@ -1791,10 +1791,10 @@ case "gpt4":
                       break;
 
 //========================================================================================================================//
-case "support":
+case "support": {
     try {
         // ====================== CONFIGURATION ======================
-        const supportData = {
+        const supportConfig = {
             contacts: {
                 group: "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr",
                 channel: "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N",
@@ -1805,9 +1805,9 @@ case "support":
             media: {
                 image: "https://files.catbox.moe/xiflcv.jpeg",
                 audios: [
-                    'https://files.catbox.moe/3aodq6.mp3', // Piano
-                    'https://files.catbox.moe/9mfy9a.mp3', // Ambient
-                    'https://files.catbox.moe/5x9x9x.mp3'  // Chimes
+                    'https://files.catbox.moe/3aodq6.mp3',
+                    'https://files.catbox.moe/9mfy9a.mp3',
+                    'https://files.catbox.moe/5x9x9x.mp3'
                 ]
             }
         };
@@ -1815,67 +1815,60 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // Send support information with image
+        // 1. Send support info with perfect container formatting
+        const supportMessage = `
+▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜
+▌       🅱🅻🅰🅲🅺🆈 🆂🆄🅿🅿🅾🆁🆃       ▐
+▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟
+
+▌🟪 𝗚𝗥𝗢𝗨𝗣▐
+${supportConfig.contacts.group}
+
+▌🟦 𝗖𝗛𝗔𝗡𝗡𝗘𝗟▐
+${supportConfig.contacts.channel}
+
+▌🟩 𝗘𝗠𝗔𝗜𝗟▐
+${supportConfig.contacts.email}
+
+▌🟧 𝗚𝗜𝗧𝗛𝗨𝗕▐
+${supportConfig.contacts.github}
+
+▌🟥 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥▐
+wa.me/${supportConfig.contacts.developer}
+
+✦ 24-Hour Response Guarantee ✦
+⚡ BLACKY BOT v3.0 ⚡`.trim();
+
         await client.sendMessage(m.chat, {
-            image: { url: supportData.media.image },
-            caption: ▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n +
-                     ▌       🅱🅻🅰🅲🅺🆈 🆂🆄🅿🅿🅾🆁🆃       ▐\n +
-                     ▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟪 𝗚𝗥𝗢𝗨𝗣               ▐\n +
-                     ▌  ${supportData.contacts.group}  ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟦 𝗖𝗛𝗔𝗡𝗡𝗘𝗟             ▐\n +
-                     ▌  ${supportData.contacts.channel}  ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟩 𝗘𝗠𝗔𝗜𝗟               ▐\n +
-                     ▌  ${supportData.contacts.email}        ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟧 𝗚𝗜𝗧𝗛𝗨𝗕              ▐\n +
-                     ▌  ${supportData.contacts.github}  ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ▌═══════════════════════════▐\n +
-                     ▌  🟥 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥           ▐\n +
-                     ▌  wa.me/${supportData.contacts.developer}          ▐\n +
-                     ▌═══════════════════════════▐\n\n +
-                     ✦ 24-Hour Response Guarantee ✦\n +
-                     ⚡ BLACKY BOT v3.0 ⚡,
+            image: { url: supportConfig.media.image },
+            caption: supportMessage,
             contextInfo: {
                 externalAdReply: {
                     title: "PREMIUM SUPPORT SYSTEM",
                     body: "Tap to join support channel",
-                    thumbnail: { url: supportData.media.image },
-                    sourceUrl: supportData.contacts.channel
+                    thumbnail: { url: supportConfig.media.image },
+                    sourceUrl: supportConfig.contacts.channel
                 }
             }
         });
 
-        // Send random audio after support info
-        const randomAudio = supportData.media.audios[Math.floor(Math.random() * supportData.media.audios.length)];
+        // 2. Send audio separately (won't interfere with containers)
+        const randomAudio = supportConfig.media.audios[Math.floor(Math.random() * supportConfig.media.audios.length)];
         await client.sendMessage(m.chat, {
             audio: { url: randomAudio },
             mimetype: 'audio/mpeg',
-            fileName: "BLACKY_SUPPORT_THEME.mp3",
-            contextInfo: {
-                externalAdReply: {
-                    title: "SUPPORT THEME MUSIC",
-                    body: "Enjoy this premium audio track",
-                    thumbnail: { url: supportData.media.image },
-                    sourceUrl: supportData.contacts.channel
-                }
-            }
+            ptt: false,
+            fileName: "BLACKY_SUPPORT.mp3"
         });
 
     } catch (error) {
-        console.error("Support command error:", error);
+        console.error("Support Command Error:", error);
         await client.sendMessage(m.chat, { 
-            text: "⚠ Failed to load full support info. Please contact developer directly: wa.me/254114283550"
-        });
+            text: "🚨 Error loading support info. Contact developer directly:\nwa.me/254114283550" 
+        }, { quoted: m });
     }
     break;
+}
 //========================================================================================================================//		      
 		      case "gpt2":
 		{
