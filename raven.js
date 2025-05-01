@@ -2532,11 +2532,11 @@ case 'save': {
       }
 
       // Confirm in original chat
-      await m.reply("✅ Status saved to your DM!");
+      await m.reply("✅𝒔𝒂𝒗𝒆𝒅 𝑩𝒍𝒂𝒄𝒌𝒊𝒆-𝑴𝑫");
 
     } catch (error) {
       console.error("Save error:", error);
-      await m.reply("❌ Failed to save status. Please try again.");
+      await m.reply("❌ Failed 𝑩𝒍𝒂𝒄𝒌𝒊𝒆-𝑴𝑫.");
     }
   }
 }
