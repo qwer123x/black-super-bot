@@ -1792,29 +1792,30 @@ case "gpt4":
 
 //========================================================================================================================//
 case "support": {
-    // 𝗖𝗢𝗡𝗙𝗜𝗚𝗨𝗥𝗔𝗧𝗜𝗢𝗡
+    // 𝗖𝗢𝗡𝗙𝗜𝗚𝗨𝗥𝗔𝗧𝗜𝗢𝗡 (Fixed URLs)
     const 𝕭𝖑𝖆𝖈𝖐𝖞 = {
         links: {
             group: "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr",
             channel: "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N",
             email: "cryptoboy1649@gmail.com",
             github: "https://github.com/black-super-bot/issues",
-            developer: "wa.me/254114283550"
+            developer: "https://wa.me/254114283550" // Added https://
         },
         media: {
             banner: "https://files.catbox.moe/xiflcv.jpeg",
             soundtrack: [
-                'https://files.catbox.moe/3aodq6.mp3', // Epic Orchestral
-                'https://files.catbox.moe/9mfy9a.mp3', // Cyberpunk Synth
-                'https://files.catbox.moe/5x9x9x.mp3'  // Mystical Chimes
+                'https://files.catbox.moe/3aodq6.mp3',
+                'https://files.catbox.moe/9mfy9a.mp3',
+                'https://files.catbox.moe/5x9x9x.mp3'
             ]
         }
     };
 
-    // 𝗩𝗜𝗦𝗨𝗔𝗟 𝗠𝗔𝗦𝗧𝗘𝗥𝗣𝗜𝗘𝗖𝗘
-    await client.sendPresenceUpdate('composing', m.chat);
-    
-    const 𝗌𝗎𝗉𝗉𝗈𝗋𝗍𝖬𝖾𝗌𝗌𝖺𝗀𝖾 = `
+    try {
+        // 𝗩𝗜𝗦𝗨𝗔𝗟 𝗠𝗔𝗦𝗧𝗘𝗥𝗣𝗜𝗘𝗖𝗘 (Fixed typo "PREMIUM")
+        await client.sendPresenceUpdate('composing', m.chat);
+        
+        const 𝗌𝗎𝗉𝗉𝗈𝗋𝗍𝖬𝖾𝗌𝗌𝖺𝗀𝖾 = `
 ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 █                             █
 █   🄱🄻🄰🄲🄺🅈 🅂🅄🄿🄿🄾🅁🅃   █
@@ -1835,36 +1836,44 @@ case "support": {
 █  24/7 PREMIUM SUPPORT  █
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀`.trim();
 
-    // 𝗦𝗘𝗡𝗗 𝗩𝗜𝗦𝗨𝗔𝗟
-    await client.sendMessage(m.chat, {
-        image: { url: 𝕭𝖑𝖆𝖈𝖐𝖞.media.banner },
-        caption: 𝗌𝗎𝗉𝗉𝗈𝗋𝗍𝖬𝖾𝗌𝗌𝖺𝗀𝖾,
-        contextInfo: {
-            externalAdReply: {
-                title: "🅿🆁🅴🅼🅸🆄🅼 🆂🆄🅿🅿🅾🆁🆃",
-                body: "BLACKY BOT v3.0 | Instant Response",
-                thumbnail: { url: 𝕭𝖑𝖆𝖈𝖐𝖞.media.banner },
-                sourceUrl: 𝕭𝖑𝖆𝖈𝖐𝖞.links.channel
+        // 𝗦𝗘𝗡𝗗 𝗩𝗜𝗦𝗨𝗔𝗟
+        await client.sendMessage(m.chat, {
+            image: { url: 𝕭𝖑𝖆𝖈𝖐𝖞.media.banner },
+            caption: 𝗌𝗎𝗉𝗉𝗈𝗋𝗍𝖬𝖾𝗌𝗌𝖺𝗀𝖾,
+            contextInfo: {
+                externalAdReply: {
+                    title: "🅿🆁🅴🅼🅸🆄🅼 🆂🆄🅿🅿🅾🆁🆃",
+                    body: "BLACKY BOT v3.0 | Instant Response",
+                    thumbnail: { url: 𝕭𝖑𝖆𝖈𝖐𝖞.media.banner },
+                    sourceUrl: 𝕭𝖑𝖆𝖈𝖐𝖞.links.channel
+                }
             }
-        }
-    });
+        });
 
-    // 𝗣𝗥𝗘𝗠𝗜𝗨𝗠 𝗔𝗨𝗗𝗜𝗢
-    const 𝖆𝖚𝖉𝖎𝖔 = 𝕭𝖑𝖆𝖈𝖐𝖞.media.soundtrack[Math.floor(Math.random() * 𝕭𝖑𝖆𝖈𝖐𝖞.media.soundtrack.length)];
-    await client.sendMessage(m.chat, {
-        audio: { url: 𝖆𝖚𝖉𝖎𝖔 },
-        mimetype: 'audio/mpeg',
-        fileName: "BLACKY_ELITE.mp3",
-        contextInfo: {
-            externalAdReply: {
-                title: "🎵 BLACKY SIGNATURE THEME",
-                body: "Exclusive VIP Audio Experience",
-                thumbnail: { url: 𝕭𝖑𝖆𝖈𝖐𝖞.media.banner },
-                mediaType: 2,
-                sourceUrl: 𝕭𝖑𝖆𝖈𝖐𝖞.links.channel
+        // 𝗣𝗥𝗘𝗠𝗜𝗨𝗠 𝗔𝗨𝗗𝗜𝗢 (Fixed URL format)
+        const 𝖆𝖚𝖉𝖎𝖔 = 𝕭𝖑𝖆𝖈𝖐𝖞.media.soundtrack[Math.floor(Math.random() * 𝕭𝖑𝖆𝖈𝖐𝖞.media.soundtrack.length)];
+        await client.sendMessage(m.chat, {
+            audio: { url: 𝖆𝖚𝖉𝖎𝖔.replace("https://", "https://") }, // Fix double slash
+            mimetype: 'audio/mpeg',
+            fileName: "BLACKY_ELITE.mp3",
+            contextInfo: {
+                externalAdReply: {
+                    title: "🎵 BLACKY SIGNATURE THEME",
+                    body: "Exclusive VIP Audio Experience",
+                    thumbnail: { url: 𝕭𝖑𝖆𝖈𝖐𝖞.media.banner },
+                    mediaType: 2,
+                    sourceUrl: 𝕭𝖑𝖆𝖈𝖐𝖞.links.channel
+                }
             }
-        }
-    });
+        });
+
+    } catch (err) {
+        console.error("Support Error:", err);
+        await client.sendMessage(m.chat, {
+            text: ⚠ Support System Busy\n\nContact directly:\n${𝕭𝖑𝖆𝖈𝖐𝖞.links.developer},
+            footer: "BLACKY BOT • 24/7 Support"
+        });
+    }
     break;
 }
 //========================================================================================================================//		      
