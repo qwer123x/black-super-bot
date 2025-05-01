@@ -1791,7 +1791,91 @@ case "gpt4":
                       break;
 
 //========================================================================================================================//
+case "support":
+    try {
+        // ====================== CONFIGURATION ======================
+        const supportData = {
+            contacts: {
+                group: "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr",
+                channel: "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N",
+                email: "cryptoboy1649@gmail.com",
+                github: "https://github.com/black-super-bot/issues",
+                developer: "254114283550"
+            },
+            media: {
+                image: "https://files.catbox.moe/xiflcv.jpeg",
+                audios: [
+                    'https://files.catbox.moe/3aodq6.mp3', // Piano
+                    'https://files.catbox.moe/9mfy9a.mp3', // Ambient
+                    'https://files.catbox.moe/5x9x9x.mp3'  // Chimes
+                ]
+            }
+        };
 
+        // ====================== EXECUTION ======================
+        await client.sendPresenceUpdate('composing', m.chat);
+
+        // Send support information with image
+        await client.sendMessage(m.chat, {
+            image: { url: supportData.media.image },
+            caption: ▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n +
+                     ▌       🅱🅻🅰🅲🅺🆈 🆂🆄🅿🅿🅾🆁🆃       ▐\n +
+                     ▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟪 𝗚𝗥𝗢𝗨𝗣               ▐\n +
+                     ▌  ${supportData.contacts.group}  ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟦 𝗖𝗛𝗔𝗡𝗡𝗘𝗟             ▐\n +
+                     ▌  ${supportData.contacts.channel}  ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟩 𝗘𝗠𝗔𝗜𝗟               ▐\n +
+                     ▌  ${supportData.contacts.email}        ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟧 𝗚𝗜𝗧𝗛𝗨𝗕              ▐\n +
+                     ▌  ${supportData.contacts.github}  ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟥 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥           ▐\n +
+                     ▌  wa.me/${supportData.contacts.developer}          ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ✦ 24-Hour Response Guarantee ✦\n +
+                     ⚡ BLACKY BOT v3.0 ⚡,
+            contextInfo: {
+                externalAdReply: {
+                    title: "PREMIUM SUPPORT SYSTEM",
+                    body: "Tap to join support channel",
+                    thumbnail: { url: supportData.media.image },
+                    sourceUrl: supportData.contacts.channel
+                }
+            }
+        });
+
+        // Send random audio after support info
+        const randomAudio = supportData.media.audios[Math.floor(Math.random() * supportData.media.audios.length)];
+        await client.sendMessage(m.chat, {
+            audio: { url: randomAudio },
+            mimetype: 'audio/mpeg',
+            fileName: "BLACKY_SUPPORT_THEME.mp3",
+            contextInfo: {
+                externalAdReply: {
+                    title: "SUPPORT THEME MUSIC",
+                    body: "Enjoy this premium audio track",
+                    thumbnail: { url: supportData.media.image },
+                    sourceUrl: supportData.contacts.channel
+                }
+            }
+        });
+
+    } catch (error) {
+        console.error("Support command error:", error);
+        await client.sendMessage(m.chat, { 
+            text: "⚠ Failed to load full support info. Please contact developer directly: wa.me/254114283550"
+        });
+    }
+    break;
 //========================================================================================================================//		      
 		      case "gpt2":
 		{
