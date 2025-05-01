@@ -1314,38 +1314,7 @@ m.reply("*Wait a moment...*");
 	 break;
 
 //========================================================================================================================//		      
-case 'tiktokstalk':
-case 'ttstalk': {
-    if (!text) return m.reply(`Provide TikTok Username\n\nExample: ${prefix + command} `);
-    Bellah.sendMessage(m.chat, { react: { text: '🕒', key: m.key } });
-    
-    try {
-        const respon = await fetchJson(https://api.elxyzgpt.xyz/stalk/tiktok?apikey=KC-d25a3f0c02be4021&username=${encodeURIComponent(text)});
-        const user = respon.result.user;
-        const stats = respon.result.stats;
-        let teks = `
-┌──「 STALKING 」
-▢ 🔖 Name: ${user.nickname}
-▢ 🔖 Username: ${user.uniqueId}
-▢ 👥 Followers: ${stats.followerCount}
-▢ 🫂 Following: ${stats.followingCount}
-▢ 📌 Bio: ${user.signature}
-▢ 🏝 Posts: ${stats.videoCount}
-▢ ❣ Likes: ${stats.heartCount}
-▢ 🔗 Link: https://tiktok.com/@${user.uniqueId}
-└────────────`;
 
-        await Bellah.sendMessage(
-            m.chat, 
-            { image: { url: user.avatarLarger }, caption: teks }, 
-            { quoted: loli }
-        );
-    } catch (err) {
-        console.error(err);
-        m.reply(yooh. Provide valid TikTok username.);
-    }
-}
-break;
 //========================================================================================================================//		
 	      case 'matrix':{
 		      var mumaker = require("mumaker");
