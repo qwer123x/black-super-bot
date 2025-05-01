@@ -368,15 +368,18 @@ let cap = `𝗛𝗲𝘆 𝘁𝗵𝗲𝗿𝗲😊, ${getGreeting()}\n\n╔══�
 ║   ‼ 𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓-𝐌𝐃 ‼  ║
 ║   ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
 ╠════════════════════════════════╣
-║   🚀 v3.5.1 | Prefix:    
-║   ⏱ 5:57 AM   
-║   💻 RAM: 32GB/64GB | 0.0005ms 
+┃✬│ 𝗨𝘀𝗲𝗿 : ${m.pushName}
+┃✫│ 𝗣𝗿𝗲𝗳𝗶𝘅 : ${prefix}
+┃✫│ 𝗠𝗼𝗱𝗲 : ${mode}
+┃✯│ 𝗦𝗽𝗲𝗲𝗱 :   ${Rspeed.toFixed(4)} 𝗠𝘀
+┃✬│ 𝗧𝗶𝗺𝗲 : ${getCurrentTimeInNairobi()} on ${date.toLocaleString('en-US', { weekday: 'long', timeZone: 'Africa/Nairobi'})}
+┃✫│ 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 𝗥𝗔𝗠 : 32𝗚𝗕 𝗼𝗳 64𝗚𝗕 
 ╚════════════════════════════════╝
 
 ╔════════════════════════════════╗
 ║   𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗 𝗠𝗢𝗗𝗨𝗟𝗘𝗦 (𝟭𝟴)   ║
-╠════════════════════════════════╣
-║   🎥 video    🎵 song    🎶 song2   
+╠════════════════════════════════╣  
+║   🎬 𝗩𝗶𝗱𝗲𝗼     🎵 song    🎶 song2   
 ║   🎬 ytmp4    🎧 play    🎤 play2   
 ║   📱 fbdl     📹 yts     🎼 lyrics  
 ║   🎬 movie    🐦 twitter 📸 insta   
