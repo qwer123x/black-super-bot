@@ -557,7 +557,7 @@ let cap = `𝗛𝗲𝘆 𝘁𝗵𝗲𝗿𝗲😊, ${getGreeting()}\n\n╔══�
 ╚════════════════════════════╝
 
 ╔════════════════════════════╗
-║   𝗠𝗜𝗦𝗖𝗘𝗟𝗟𝗔𝗡𝗘𝗢𝗨𝗦 (𝟭𝟯)     ║
+║   𝗠𝗜𝗦𝗖𝗘𝗟𝗟𝗔𝗡𝗘𝗢𝗨𝗦 (𝟭𝟯)     
 ╠═══════════════════════════╣
 ║   📜 𝒃𝒊𝒃𝒍𝒆
 ║   📖 𝒒𝒖𝒓𝒂𝒏
@@ -1791,94 +1791,7 @@ case "gpt4":
                       break;
 
 //========================================================================================================================//
-case "support":
-    // ====================== CONFIGURATION ======================
-    const contacts = {
-        group: "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr",
-        channel: "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N",
-        email: "cryptoboy1649@gmail.com",
-        github: "https://github.com/black-super-bot/issues",
-        developer: "254114283550"
-    };
 
-    // Media configuration
-    const media = {
-        image: "https://files.catbox.moe/xiflcv.jpeg",
-        audios: [
-            './media/menu.mp3',
-            './media/alive.mp3',
-            './media/men2.mp3'
-        ]
-    };
-
-    try {
-        // ====================== EXECUTION ======================
-        await client.sendPresenceUpdate('composing', m.chat);
-
-        // 1. Send Image with Modern Container Design
-        await client.sendMessage(m.chat, { 
-            image: { url: media.image },
-            caption: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n +
-                     █▓▒░  BLACKY SUPPORT  ░▒▓█\n +
-                     ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n\n +
-                     ┏━━━━━━━━━━━━━━━━━━━━┓\n +
-                     ┃  🟣  GROUP          ┃\n +
-                     ┣━━━━━━━━━━━━━━━━━━━━┫\n +
-                     ┃ ${contacts.group} ┃\n +
-                     ┗━━━━━━━━━━━━━━━━━━━━┛\n\n +
-                     ┏━━━━━━━━━━━━━━━━━━━━┓\n +
-                     ┃  🔵  CHANNEL        ┃\n +
-                     ┣━━━━━━━━━━━━━━━━━━━━┫\n +
-                     ┃ ${contacts.channel} ┃\n +
-                     ┗━━━━━━━━━━━━━━━━━━━━┛\n\n +
-                     ┏━━━━━━━━━━━━━━━━━━━━┓\n +
-                     ┃  🟢  EMAIL          ┃\n +
-                     ┣━━━━━━━━━━━━━━━━━━━━┫\n +
-                     ┃ ${contacts.email}  ┃\n +
-                     ┗━━━━━━━━━━━━━━━━━━━━┛\n\n +
-                     ┏━━━━━━━━━━━━━━━━━━━━┓\n +
-                     ┃  🟠  GITHUB         ┃\n +
-                     ┣━━━━━━━━━━━━━━━━━━━━┫\n +
-                     ┃ ${contacts.github} ┃\n +
-                     ┗━━━━━━━━━━━━━━━━━━━━┛\n\n +
-                     ┏━━━━━━━━━━━━━━━━━━━━┓\n +
-                     ┃  🔴  DEVELOPER      ┃\n +
-                     ┣━━━━━━━━━━━━━━━━━━━━┫\n +
-                     ┃ wa.me/${contacts.developer}      ┃\n +
-                     ┗━━━━━━━━━━━━━━━━━━━━┛\n\n +
-                     ◈◈◈ Response within 24 hours ◈◈◈\n +
-                     ✦ Thank you for choosing BLACKY! ✦,
-            contextInfo: {
-                externalAdReply: {
-                    title: "OFFICIAL SUPPORT",
-                    body: "Tap any container to connect",
-                    thumbnail: { url: media.image },
-                    sourceUrl: contacts.group
-                }
-            }
-        });
-
-        // 2. Send Audio (unchanged)
-        const audioFile = media.audios[Math.floor(Math.random() * media.audios.length)];
-        const audioData = fs.readFileSync(audioFile);
-        await client.sendMessage(m.chat, {
-            audio: audioData,
-            mimetype: 'audio/mp4',
-            ptt: false,
-            fileName: "support_audio.mp3",
-            contextInfo: {
-                externalAdReply: {
-                    title: "Support Theme Music",
-                    body: "Relaxing background audio",
-                    thumbnail: { url: media.image }
-                }
-            }
-        });
-
-    } catch (error) {
-        console.error("Support error:", error);
-    }
-    break;
 //========================================================================================================================//		      
 		      case "gpt2":
 		{
