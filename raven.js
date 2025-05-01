@@ -1286,26 +1286,7 @@ m.reply("*Wait a moment...*");
 	 break;
 
 //========================================================================================================================//		      
-case "calculator":{
-if (text.split("+")[0] && text.split("+")[1]) {
-const nilai_one = Number(text.split("+")[0])
-const nilai_two = Number(text.split("+")[1])
-reply(${nilai_one + nilai_two})
-} else if (text.split("-")[0] && text.split("-")[1]) {
-const nilai_one = Number(text.split("-")[0])
-const nilai_two = Number(text.split("-")[1])
-reply(${nilai_one - nilai_two})
-} else if (text.split("×")[0] && text.split("×")[1]) {
-const nilai_one = Number(text.split("×")[0])
-const nilai_two = Number(text.split("×")[1])
-reply(${nilai_one * nilai_two})
-} else if (text.split("÷")[0] && text.split("÷")[1]) {
-const nilai_one = Number(text.split("÷")[0])
-const nilai_two = Number(text.split("÷")[1])
-reply(${nilai_one / nilai_two})
-} else reply(*Example* : ${prefix + command} 1 + 1)
-}
-break;
+
 //========================================================================================================================//		      
 	      case 'water':{
 		      var mumaker = require("mumaker");
