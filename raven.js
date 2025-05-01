@@ -1367,45 +1367,7 @@ m.reply("*Wait a moment...*");
 	 break;
 
 //========================================================================================================================//		      
-case 'country': {
-				if (!text) return m.reply(' Provide a country name!\nExample: .country Japan');
 
-				try {
-					// Panggil API untuk mendapatkan data negara
-					let res = await fetchJson(https://api.siputzx.my.id/api/tools/countryInfo?name=${encodeURIComponent(text)}); // Ganti dengan URL API yang sesuai
-		
-					if (!res.status) return m.reply('fetching data .');
-
-					let data = res.data;
-					let continent = ${data.continent.name} ${data.continent.emoji};
-
-					// Format informasi negara
-					let info = 🌍 *Information data: ${data.name}*\n\n;
-					info += 🌐 *Continent:* ${continent}\n;
-					info += 🏙 *Capital:* ${data.capital}\n;
-					info += 📞 *Kode Telephone:* ${data.phoneCode}\n;
-					info += 💱 *Currency:* ${data.currency}\n;
-					info += 🗺 *Map:* ${data.googleMapsLink}\n;
-					info += 🌐 *TLD Internet:* ${data.internetTLD}\n;
-					info += 🗣 *Language:* ${data.languages.native.join(", ")}\n;
-					info += 🏞 *Distance:* ${data.area.squareKilometers.toLocaleString()} km² (${data.area.squareMiles.toLocaleString()} mi²)\n;
-					info += 🚗 *Driving side:* ${data.drivingSide == "Centre" ? "left" : "right"}\n;
-					info += ⭐ *Famous Traditions:* ${data.famousFor}\n;
-					info += 🏛 *Constitutionalform:* ${data.constitutionalForm}\n;
-					info += 📍 *Coordinates:* ${data.coordinates.latitude}, ${data.coordinates.longitude};
-
-					// Kirim informasi bersama gambar bendera
-					await Bellah.sendMessage(m.chat, {
-						image: { url: data.flag },
-						caption: info
-					}, { quoted: loli });
-
-				} catch (error) {
-					console.log(error);
-					m.reply('Failed to get data.');
-				}
-			}
-			break;
 //========================================================================================================================//		      
 	      case 'neon':{
 		var mumaker = require("mumaker");
