@@ -1792,81 +1792,79 @@ case "gpt4":
 
 //========================================================================================================================//
 case "support": {
-    try {
-        // ====================== CONFIGURATION ======================
-        const supportConfig = {
-            contacts: {
-                group: "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr",
-                channel: "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N",
-                email: "cryptoboy1649@gmail.com",
-                github: "https://github.com/black-super-bot/issues",
-                developer: "254114283550"
-            },
-            media: {
-                image: "https://files.catbox.moe/xiflcv.jpeg",
-                audios: [
-                    'https://files.catbox.moe/3aodq6.mp3',
-                    'https://files.catbox.moe/9mfy9a.mp3',
-                    'https://files.catbox.moe/5x9x9x.mp3'
-                ]
+    // 𝗖𝗢𝗡𝗙𝗜𝗚𝗨𝗥𝗔𝗧𝗜𝗢𝗡
+    const 𝕭𝖑𝖆𝖈𝖐𝖞 = {
+        links: {
+            group: "https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr",
+            channel: "https://whatsapp.com/channel/0029VawxyHxLdQeX3kA96G3N",
+            email: "cryptoboy1649@gmail.com",
+            github: "https://github.com/black-super-bot/issues",
+            developer: "wa.me/254114283550"
+        },
+        media: {
+            banner: "https://files.catbox.moe/xiflcv.jpeg",
+            soundtrack: [
+                'https://files.catbox.moe/3aodq6.mp3', // Epic Orchestral
+                'https://files.catbox.moe/9mfy9a.mp3', // Cyberpunk Synth
+                'https://files.catbox.moe/5x9x9x.mp3'  // Mystical Chimes
+            ]
+        }
+    };
+
+    // 𝗩𝗜𝗦𝗨𝗔𝗟 𝗠𝗔𝗦𝗧𝗘𝗥𝗣𝗜𝗘𝗖𝗘
+    await client.sendPresenceUpdate('composing', m.chat);
+    
+    const 𝗌𝗎𝗉𝗉𝗈𝗋𝗍𝖬𝖾𝗌𝗌𝖺𝗀𝖾 = `
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█                             █
+█   🄱🄻🄰🄲🄺🅈 🅂🅄🄿🄿🄾🅁🅃   █
+█                             █
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+✧ 𝙂𝙍𝙊𝙐𝙋 » ${𝕭𝖑𝖆𝖈𝖐𝖞.links.group}
+
+✧ 𝘾𝙃𝘼𝙉𝙉𝙀𝙇 » ${𝕭𝖑𝖆𝖈𝖐𝖞.links.channel}
+
+✧ 𝙀𝙈𝘼𝙄𝙇 » ${𝕭𝖑𝖆𝖈𝖐𝖞.links.email}
+
+✧ 𝙂𝙄𝙏𝙃𝙐𝘽 » ${𝕭𝖑𝖆𝖈𝖐𝖞.links.github}
+
+✧ 𝘿𝙀𝙑𝙀𝙇𝙊𝙋𝙀𝙍 » ${𝕭𝖑𝖆𝖈𝖐𝖞.links.developer}
+
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█  24/7 PREMIUM SUPPORT  █
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀`.trim();
+
+    // 𝗦𝗘𝗡𝗗 𝗩𝗜𝗦𝗨𝗔𝗟
+    await client.sendMessage(m.chat, {
+        image: { url: 𝕭𝖑𝖆𝖈𝖐𝖞.media.banner },
+        caption: 𝗌𝗎𝗉𝗉𝗈𝗋𝗍𝖬𝖾𝗌𝗌𝖺𝗀𝖾,
+        contextInfo: {
+            externalAdReply: {
+                title: "🅿🆁🅴🅼🅸🆄🅼 🆂🆄🅿🅿🅾🆁🆃",
+                body: "BLACKY BOT v3.0 | Instant Response",
+                thumbnail: { url: 𝕭𝖑𝖆𝖈𝖐𝖞.media.banner },
+                sourceUrl: 𝕭𝖑𝖆𝖈𝖐𝖞.links.channel
             }
-        };
+        }
+    });
 
-        // ====================== EXECUTION ======================
-        await client.sendPresenceUpdate('composing', m.chat);
-
-        // 1. Send support info with perfect container formatting
-        const supportMessage = `
-▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜
-▌       🅱🅻🅰🅲🅺🆈 🆂🆄🅿🅿🅾🆁🆃       ▐
-▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟
-
-▌🟪 𝗚𝗥𝗢𝗨𝗣▐
-${supportConfig.contacts.group}
-
-▌🟦 𝗖𝗛𝗔𝗡𝗡𝗘𝗟▐
-${supportConfig.contacts.channel}
-
-▌🟩 𝗘𝗠𝗔𝗜𝗟▐
-${supportConfig.contacts.email}
-
-▌🟧 𝗚𝗜𝗧𝗛𝗨𝗕▐
-${supportConfig.contacts.github}
-
-▌🟥 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥▐
-wa.me/${supportConfig.contacts.developer}
-
-✦ 24-Hour Response Guarantee ✦
-⚡ BLACKY BOT v3.0 ⚡`.trim();
-
-        await client.sendMessage(m.chat, {
-            image: { url: supportConfig.media.image },
-            caption: supportMessage,
-            contextInfo: {
-                externalAdReply: {
-                    title: "PREMIUM SUPPORT SYSTEM",
-                    body: "Tap to join support channel",
-                    thumbnail: { url: supportConfig.media.image },
-                    sourceUrl: supportConfig.contacts.channel
-                }
+    // 𝗣𝗥𝗘𝗠𝗜𝗨𝗠 𝗔𝗨𝗗𝗜𝗢
+    const 𝖆𝖚𝖉𝖎𝖔 = 𝕭𝖑𝖆𝖈𝖐𝖞.media.soundtrack[Math.floor(Math.random() * 𝕭𝖑𝖆𝖈𝖐𝖞.media.soundtrack.length)];
+    await client.sendMessage(m.chat, {
+        audio: { url: 𝖆𝖚𝖉𝖎𝖔 },
+        mimetype: 'audio/mpeg',
+        fileName: "BLACKY_ELITE.mp3",
+        contextInfo: {
+            externalAdReply: {
+                title: "🎵 BLACKY SIGNATURE THEME",
+                body: "Exclusive VIP Audio Experience",
+                thumbnail: { url: 𝕭𝖑𝖆𝖈𝖐𝖞.media.banner },
+                mediaType: 2,
+                sourceUrl: 𝕭𝖑𝖆𝖈𝖐𝖞.links.channel
             }
-        });
-
-        // 2. Send audio separately (won't interfere with containers)
-        const randomAudio = supportConfig.media.audios[Math.floor(Math.random() * supportConfig.media.audios.length)];
-        await client.sendMessage(m.chat, {
-            audio: { url: randomAudio },
-            mimetype: 'audio/mpeg',
-            ptt: false,
-            fileName: "BLACKY_SUPPORT.mp3"
-        });
-
-    } catch (error) {
-        console.error("Support Command Error:", error);
-        await client.sendMessage(m.chat, { 
-            text: "🚨 Error loading support info. Contact developer directly:\nwa.me/254114283550" 
-        }, { quoted: m });
-    }
+        }
+    });
     break;
 }
 //========================================================================================================================//		      
