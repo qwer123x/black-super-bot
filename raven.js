@@ -1736,34 +1736,34 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // 1. First send support information
+        // 1. Send the main support message (image + formatted text)
         await client.sendMessage(m.chat, { 
             image: { url: media.image },
-            caption: `▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n` +
-                     `▌       🅱🅻🅰🅲🅺🆈 🆂🆄🅿🅿🅾🆁🆃       ▐\n` +
-                     `▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟\n\n` +
-                     `▌═══════════════════════════▐\n` +
-                     `▌  🟪 𝗚𝗥𝗢𝗨𝗣               ▐\n` +
-                     `▌  ${contacts.group}  ▐\n` +
-                     `▌═══════════════════════════▐\n\n` +
-                     `▌═══════════════════════════▐\n` +
-                     `▌  🟦 𝗖𝗛𝗔𝗡𝗡𝗘𝗟             ▐\n` +
-                     `▌  ${contacts.channel}  ▐\n` +
-                     `▌═══════════════════════════▐\n\n` +
-                     `▌═══════════════════════════▐\n` +
-                     `▌  🟩 𝗘𝗠𝗔𝗜𝗟               ▐\n` +
-                     `▌  ${contacts.email}        ▐\n` +
-                     `▌═══════════════════════════▐\n\n` +
-                     `▌═══════════════════════════▐\n` +
-                     `▌  🟧 𝗚𝗜𝗧𝗛𝗨𝗕              ▐\n` +
-                     `▌  ${contacts.github}  ▐\n` +
-                     `▌═══════════════════════════▐\n\n` +
-                     `▌═══════════════════════════▐\n` +
-                     `▌  🟥 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥           ▐\n` +
-                     `▌  wa.me/${contacts.developer}          ▐\n` +
-                     `▌═══════════════════════════▐\n\n` +
-                     `✦ 24-Hour Response Guarantee ✦\n` +
-                     `⚡ BLACKY BOT v3.0 ⚡`,
+            caption: ▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n +
+                     ▌       🅱🅻🅰🅲🅺🆈 🆂🆄🅿🅿🅾🆁🆃       ▐\n +
+                     ▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟪 𝗚𝗥𝗢𝗨𝗣               ▐\n +
+                     ▌  ${contacts.group}  ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟦 𝗖𝗛𝗔𝗡𝗡𝗘𝗟             ▐\n +
+                     ▌  ${contacts.channel}  ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟩 𝗘𝗠𝗔𝗜𝗟               ▐\n +
+                     ▌  ${contacts.email}        ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟧 𝗚𝗜𝗧𝗛𝗨𝗕              ▐\n +
+                     ▌  ${contacts.github}  ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ▌═══════════════════════════▐\n +
+                     ▌  🟥 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥           ▐\n +
+                     ▌  wa.me/${contacts.developer}          ▐\n +
+                     ▌═══════════════════════════▐\n\n +
+                     ✦ 24-Hour Response Guarantee ✦\n +
+                     ⚡ BLACKY BOT v3.0 ⚡,
             contextInfo: {
                 externalAdReply: {
                     title: "PREMIUM SUPPORT SYSTEM",
@@ -1774,36 +1774,17 @@ case "support":
             }
         });
 
-        // 2. Then send audio separately (after support info)
+        // 2. Send the audio separately (no extra text/captions)
         const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
         await client.sendMessage(m.chat, {
             audio: { url: audioUrl },
             mimetype: 'audio/mpeg',
             ptt: false,
-            fileName: "BLACKY_SUPPORT_AUDIO.mp3",
-            contextInfo: {
-                externalAdReply: {
-                    title: "SUPPORT THEME MUSIC",
-                    body: "BLACKY BOT Official Audio",
-                    thumbnail: { url: media.image },
-                    mediaType: 2,
-                    mediaUrl: contacts.channel,
-                    sourceUrl: contacts.channel
-                }
-            }
+            fileName: "BLACKY_SUPPORT_AUDIO.mp3"
         });
 
     } catch (error) {
-        console.error("Support error:", error);
-        // Minimal fallback
-        await client.sendMessage(m.chat, {
-            text: `BLACKY SUPPORT\n\n` +
-                  `Group: ${contacts.group}\n` +
-                  `Channel: ${contacts.channel}\n` +
-                  `Email: ${contacts.email}\n` +
-                  `GitHub: ${contacts.github}\n` +
-                  `Developer: wa.me/${contacts.developer}`
-        }, { quoted: m });
+        console.error("Support command failed:", error); // Log error for debugging
     }
     break;
 //========================================================================================================================//		      
