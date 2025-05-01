@@ -1736,7 +1736,7 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // 1. Send the main support message (image + formatted text)
+        // 1. First send support information
         await client.sendMessage(m.chat, { 
             image: { url: media.image },
             caption: ▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n +
@@ -1774,17 +1774,36 @@ case "support":
             }
         });
 
-        // 2. Send the audio separately (no extra text/captions)
+        // 2. Then send audio separately (after support info)
         const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
         await client.sendMessage(m.chat, {
             audio: { url: audioUrl },
             mimetype: 'audio/mpeg',
             ptt: false,
-            fileName: "BLACKY_SUPPORT_AUDIO.mp3"
+            fileName: "BLACKY_SUPPORT_AUDIO.mp3",
+            contextInfo: {
+                externalAdReply: {
+                    title: "SUPPORT THEME MUSIC",
+                    body: "BLACKY BOT Official Audio",
+                    thumbnail: { url: media.image },
+                    mediaType: 2,
+                    mediaUrl: contacts.channel,
+                    sourceUrl: contacts.channel
+                }
+            }
         });
 
     } catch (error) {
-        console.error("Support command failed:", error); // Log error for debugging
+        console.error("Support error:", error);
+        // Minimal fallback
+        await client.sendMessage(m.chat, {
+            text: BLACKY SUPPORT\n\n +
+                  Group: ${contacts.group}\n +
+                  Channel: ${contacts.channel}\n +
+                  Email: ${contacts.email}\n +
+                  GitHub: ${contacts.github}\n +
+                  Developer: wa.me/${contacts.developer}
+        }, { quoted: m });
     }
     break;
 //========================================================================================================================//		      
