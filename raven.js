@@ -3,12 +3,15 @@ const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, g
 const fs = require("fs");
 const path = require('path');
 const util = require("util");
+const mumaker = require("mumaker");
 global.axios = require('axios').default
 const chalk = require("chalk");
 const uploadToCatbox = require('./lib/catbox.js');
 const speed = require("performance-now");
 const Genius = require("genius-lyrics");
 const yts = require("yt-search");
+let lastTextTime = 0;
+const messageDelay = 3000;
 const { DateTime } = require('luxon');
 const uploadtoimgur = require('./lib/imgur');
 const advice = require("badadvice");
