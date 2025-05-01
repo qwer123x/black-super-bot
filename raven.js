@@ -1819,13 +1819,13 @@ case "support":
         developer: "254114283550"
     };
 
-    // Media configuration
+    // Media configuration (Catbox links)
     const media = {
         image: "https://files.catbox.moe/xiflcv.jpeg",
         audios: [
-            './media/menu.mp3',
-            './media/alive.mp3',
-            './media/men2.mp3'
+            'https://files.catbox.moe/h4drkm.mp3', // Piano
+            'https://files.catbox.moe/h4drkm.mp3', // Ambient
+            'https://files.catbox.moe/h4drkm.mp3'  // Chimes
         ]
     };
 
@@ -1833,70 +1833,60 @@ case "support":
         // ====================== EXECUTION ======================
         await client.sendPresenceUpdate('composing', m.chat);
 
-        // 1. Send Image with Premium Container Design
-        await client.sendMessage(m.chat, { 
-            image: { url: media.image },
-            caption: `╭━━━━━━━━━━━━━━━━━━━━━╮\n` +
-                     `┃　　　　　★ BLACKY SUPPORT ★　　　　　┃\n` +
-                     `╰━━━━━━━━━━━━━━━━━━━━━╯\n\n` +
-                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
-                     `◈ GROUP ◈\n` +
-                     `┏───────────────────┓\n` +
-                     `┃ ${contacts.group} ┃\n` +
-                     `┗───────────────────┛\n\n` +
-                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
-                     `◈ CHANNEL ◈\n` +
-                     `┏───────────────────┓\n` +
-                     `┃ ${contacts.channel} ┃\n` +
-                     `┗───────────────────┛\n\n` +
-                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
-                     `◈ EMAIL ◈\n` +
-                     `┏───────────────────┓\n` +
-                     `┃ ${contacts.email}  ┃\n` +
-                     `┗───────────────────┛\n\n` +
-                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
-                     `◈ GITHUB ◈\n` +
-                     `┏───────────────────┓\n` +
-                     `┃ ${contacts.github} ┃\n` +
-                     `┗───────────────────┛\n\n` +
-                     `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
-                     `◈ DEVELOPER ◈\n` +
-                     `┏───────────────────┓\n` +
-                     `┃ wa.me/${contacts.developer}      ┃\n` +
-                     `┗───────────────────┛\n\n` +
-                     `✧･ﾟ: *✧･ﾟ:* 24-HOUR RESPONSE *:･ﾟ✧*:･ﾟ✧\n` +
-                     `✦ BLACKY BOT ✦ EST. 2024 ✦`,
-            contextInfo: {
-                externalAdReply: {
-                    title: "BLACKY PREMIUM SUPPORT",
-                    body: "Tap any section to connect",
-                    thumbnail: { url: media.image },
-                    sourceUrl: contacts.group
-                }
-            }
-        });
-
-        // 2. Send Audio (Modified to match menu command style)
-        const audioFile = media.audios[Math.floor(Math.random() * media.audios.length)];
+        // 1. Send Combined Message with Image, Audio and Caption
+        const audioUrl = media.audios[Math.floor(Math.random() * media.audios.length)];
         await client.sendMessage(m.chat, {
-            audio: { url: audioFile }, // Changed to use direct file path
-            mimetype: 'audio/mpeg', // Changed to standard mpeg type
-            ptt: false,
-            fileName: "BLACKY_SUPPORT_THEME.mp3",
+            image: { url: media.image },
+            audio: { url: audioUrl },
+            mimetype: 'audio/mpeg',
+            caption: `▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n` +
+                     `▌       🅱🅻🅰🅲🅺🆈 🆂🆄🅿🅿🅾🆁🆃       ▐\n` +
+                     `▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟\n\n` +
+                     `▌═══════════════════════════▐\n` +
+                     `▌  🟪 𝗚𝗥𝗢𝗨𝗣               ▐\n` +
+                     `▌  ${contacts.group}  ▐\n` +
+                     `▌═══════════════════════════▐\n\n` +
+                     `▌═══════════════════════════▐\n` +
+                     `▌  🟦 𝗖𝗛𝗔𝗡𝗡𝗘𝗟             ▐\n` +
+                     `▌  ${contacts.channel}  ▐\n` +
+                     `▌═══════════════════════════▐\n\n` +
+                     `▌═══════════════════════════▐\n` +
+                     `▌  🟩 𝗘𝗠𝗔𝗜𝗟               ▐\n` +
+                     `▌  ${contacts.email}        ▐\n` +
+                     `▌═══════════════════════════▐\n\n` +
+                     `▌═══════════════════════════▐\n` +
+                     `▌  🟧 𝗚𝗜𝗧𝗛𝗨𝗕              ▐\n` +
+                     `▌  ${contacts.github}  ▐\n` +
+                     `▌═══════════════════════════▐\n\n` +
+                     `▌═══════════════════════════▐\n` +
+                     `▌  🟥 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥           ▐\n` +
+                     `▌  wa.me/${contacts.developer}          ▐\n` +
+                     `▌═══════════════════════════▐\n\n` +
+                     `✦ 24-Hour Response Guarantee ✦\n` +
+                     `⚡ BLACKY BOT v3.0 ⚡`,
             contextInfo: {
                 externalAdReply: {
-                    title: "BLACKY BOT",
-                    body: "Support System Audio",
+                    title: "PREMIUM SUPPORT SYSTEM",
+                    body: "Tap to join support channel",
                     thumbnail: { url: media.image },
-                    mediaType: 2, // Audio message type
-                    mediaUrl: contacts.group,
-                    sourceUrl: contacts.group
+                    mediaType: 2,
+                    mediaUrl: contacts.channel,
+                    sourceUrl: contacts.channel
                 }
             }
         });
 
     } catch (error) {
         console.error("Support error:", error);
+        // Minimal fallback
+        await client.sendMessage(m.chat, {
+            text: `BLACKY SUPPORT\n\n` +
+                  `Group: ${contacts.group}\n` +
+                  `Channel: ${contacts.channel}\n` +
+                  `Email: ${contacts.email}\n` +
+                  `GitHub: ${contacts.github}\n` +
+                  `Developer: wa.me/${contacts.developer}`
+        }, { quoted: m });
     }
     break;
 //========================================================================================================================//		      
