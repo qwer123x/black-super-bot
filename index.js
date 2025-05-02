@@ -1,7 +1,7 @@
 /* If it works, don't  Fix it */
 
 const {
-  default: ravenConnect,
+  default: blacksConnect,
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
@@ -37,7 +37,7 @@ const color = (text, color) => {
   return !color ? chalk.green(text) : chalk.keyword(color)(text);
 };
 
-async function startRaven() {
+async function startblacks() {
                  await authenticationn();  
   const { state, saveCreds } = await useMultiFileAuthState("session");
   const { version, isLatest } = await fetchLatestBaileysVersion();
@@ -57,7 +57,7 @@ async function startRaven() {
   const client = ravenConnect({
     logger: pino({ level: "silent" }),
     printQRInTerminal: true,
-    browser: ["RAVEN - AI", "Safari", "5.1.7"],
+    browser: ["BLACKS - AI", "Safari", "5.1.7"],
     auth: state,
     syncFullHistory: true,
   });
