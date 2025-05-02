@@ -24,7 +24,7 @@ const { Configuration, OpenAI } = require("openai");
 const { menu, autoread, mode, antidel, antitag, appname, herokuapi, gptdm, botname, antibot, prefix, author, packname, mycode, admin, botAdmin, dev, group, bad, DevRaven, NotOwner, antilink, antilinkall, wapresence, badwordkick } = require("./set.js");
 const { smsg, runtime, fetchUrl, isUrl, processTime, formatp, tanggal, formatDate, getTime,  sleep, generateProfilePicture, clockString, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('./lib/ravenfunc');
 const { exec, spawn, execSync } = require("child_process");
-module.exports = blacks = async (client, m, chatUpdate, store) => {
+module.exports = raven = async (client, m, chatUpdate, store) => {
   try {
     var body =
       m.mtype === "conversation"
