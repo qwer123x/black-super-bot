@@ -1,7 +1,7 @@
 /* If it works, don't  Fix it */
 
 const {
-  default: ravenConnect,
+  default: blacksConnect,
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
