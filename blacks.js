@@ -2502,31 +2502,32 @@ reply(resultt.stderr)
       break;
 
 //========================================================================================================================//		      
-		      case 'save': {
+case 'save': {
   const textL = m.text.toLowerCase();
   const quotedMessage = m.msg?.contextInfo?.quotedMessage;
 
-if (quotedMessage && textL.startsWith(prefix + "save") && !m.quoted.chat.includes("status@broadcast")) {
+  if (quotedMessage && textL.startsWith(prefix + "save") && !m.quoted.chat.includes("status@broadcast")) {
     return m.reply("You did not tag a status media to save.");
   }
 
-if (Owner && quotedMessage && textL.startsWith(prefix + "save") && m.quoted.chat.includes("status@broadcast")) {
+  if (Owner && quotedMessage && textL.startsWith(prefix + "save") && m.quoted.chat.includes("status@broadcast")) {
     
     if (quotedMessage.imageMessage) {
       let imageCaption = quotedMessage.imageMessage.caption;
       let imageUrl = await client.downloadAndSaveMediaMessage(quotedMessage.imageMessage);
-      client.sendMessage(m.chat, { image: { url: imageUrl }, caption: imageCaption });
+      client.sendMessage(m.sender, { image: { url: imageUrl }, caption: imageCaption }); // Changed m.chat to m.sender for DM
+      client.sendMessage(m.chat, "Status saved successfully in your DM!");
     }
 
     if (quotedMessage.videoMessage) {
       let videoCaption = quotedMessage.videoMessage.caption;
       let videoUrl = await client.downloadAndSaveMediaMessage(quotedMessage.videoMessage);
-      client.sendMessage(m.chat, { video: { url: videoUrl }, caption: videoCaption });
+      client.sendMessage(m.sender, { video: { url: videoUrl }, caption: videoCaption }); // Changed m.chat to m.sender for DM
+      client.sendMessage(m.chat, "Status saved successfully in your DM!");
     }
-     }
-      }
-    break;
-	      
+  }
+}
+break;	      
 //========================================================================================================================//		      
 	      case 'gitclone': {
 		      if (!text) return m.reply(`Where is the link?`)
