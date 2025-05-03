@@ -2506,41 +2506,39 @@ case 'save': {
   const textL = m.text.toLowerCase();
   const quotedMessage = m.msg?.contextInfo?.quotedMessage;
 
-  // Check if user quoted a status
-  if (quotedMessage && textL.startsWith(prefix + "save") && !m.quoted.chat.includes("status@broadcast")) {
+  // Check if user quoted a message and it's a status
+  if (!quotedMessage || !m.quoted?.chat?.includes("status@broadcast")) {
     return m.reply("❌ You must reply to a status to save it");
   }
 
-  if (Owner && quotedMessage && textL.startsWith(prefix + "save") && m.quoted.chat.includes("status@broadcast")) {
-    try {
-      // Send to user's DM instead of group chat
-      const userDM = m.sender; // Get user's personal chat ID
+  try {
+    // Send to user's DM instead of group chat
+    const userDM = m.sender; // Get user's personal chat ID
 
-      if (quotedMessage.imageMessage) {
-        let imageCaption = quotedMessage.imageMessage.caption || "Saved from status";
-        let imageBuffer = await client.downloadMediaMessage(m.quoted);
-        await client.sendMessage(userDM, { 
-          image: imageBuffer, 
-          caption: imageCaption 
-        });
-      }
-
-      if (quotedMessage.videoMessage) {
-        let videoCaption = quotedMessage.videoMessage.caption || "Saved from status";
-        let videoBuffer = await client.downloadMediaMessage(m.quoted);
-        await client.sendMessage(userDM, { 
-          video: videoBuffer, 
-          caption: videoCaption 
-        });
-      }
-
-      // Confirm in original chat
-      await m.reply("✅𝒔𝒂𝒗𝒆𝒅 𝑩𝒍𝒂𝒄𝒌𝒊𝒆-𝑴𝑫");
-
-    } catch (error) {
-      console.error("Save error:", error);
-      await m.reply("❌ Failed 𝑩𝒍𝒂𝒄𝒌𝒊𝒆-𝑴𝑫.");
+    if (quotedMessage.imageMessage) {
+      let imageCaption = quotedMessage.imageMessage.caption || "Saved from status";
+      let imageBuffer = await client.downloadMediaMessage(m.quoted);
+      await client.sendMessage(userDM, { 
+        image: imageBuffer, 
+        caption: imageCaption 
+      });
+    } else if (quotedMessage.videoMessage) {
+      let videoCaption = quotedMessage.videoMessage.caption || "Saved from status";
+      let videoBuffer = await client.downloadMediaMessage(m.quoted);
+      await client.sendMessage(userDM, { 
+        video: videoBuffer, 
+        caption: videoCaption 
+      });
+    } else {
+      return m.reply("❌ Only images and videos can be saved");
     }
+
+    // Confirm in original chat
+    await m.reply("✅ Saved to your DM 𝑩𝒍𝒂𝒄𝒌𝒊𝒆-𝑴𝑫");
+
+  } catch (error) {
+    console.error("Save error:", error);
+    await m.reply("❌ Failed to save. Please try again later 𝑩𝒍𝒂𝒄𝒌𝒊𝒆-𝑴𝑫");
   }
 }
 break;		      
