@@ -2503,47 +2503,64 @@ reply(resultt.stderr)
 
 //========================================================================================================================//		      
 case 'save': {
-  const textL = m.text.toLowerCase();
+  // Only allow owner to use this command
+  if (!Owner) return m.reply('This command is only for the bot owner!');
+  
   const quotedMessage = m.msg?.contextInfo?.quotedMessage;
-
-  // Check if user quoted a status
-  if (quotedMessage && textL.startsWith(prefix + "save") && !m.quoted.chat.includes("status@broadcast")) {
-    return m.reply("❌ You must reply to a status to save it");
+  
+  // Check if user quoted a message
+  if (!quotedMessage) return m.reply('Please quote a status message to save it!');
+  
+  // Verify it's a status message
+  if (!m.quoted?.chat?.includes('status@broadcast')) {
+    return m.reply('That message is not a status! Please quote a status message.');
   }
-
-  if (Owner && quotedMessage && textL.startsWith(prefix + "save") && m.quoted.chat.includes("status@broadcast")) {
-    try {
-      // Send to user's DM instead of group chat
-      const userDM = m.sender; // Get user's personal chat ID
-
-      if (quotedMessage.imageMessage) {
-        let imageCaption = quotedMessage.imageMessage.caption || "Saved from status";
-        let imageBuffer = await client.downloadMediaMessage(m.quoted);
-        await client.sendMessage(userDM, { 
-          image: imageBuffer, 
-          caption: imageCaption 
-        });
-      }
-
-      if (quotedMessage.videoMessage) {
-        let videoCaption = quotedMessage.videoMessage.caption || "Saved from status";
-        let videoBuffer = await client.downloadMediaMessage(m.quoted);
-        await client.sendMessage(userDM, { 
-          video: videoBuffer, 
-          caption: videoCaption 
-        });
-      }
-
-      // Confirm in original chat
-      await m.reply("✅𝒔𝒂𝒗𝒆𝒅 𝑩𝒍𝒂𝒄𝒌𝒊𝒆-𝑴𝑫");
-
-    } catch (error) {
-      console.error("Save error:", error);
-      await m.reply("❌ Failed 𝑩𝒍𝒂𝒄𝒌𝒊𝒆-𝑴𝑫.");
+  
+  try {
+    // Handle image status
+    if (quotedMessage.imageMessage) {
+      const imageCaption = quotedMessage.imageMessage.caption || 'Saved status image';
+      const imageBuffer = await client.downloadMediaMessage(quotedMessage);
+      
+      await client.sendMessage(
+        m.sender, 
+        {
+          image: imageBuffer,
+          caption: `✅ Status saved!\n${imageCaption}`
+        },
+        { quoted: m }
+      );
+      
+      return m.reply('📸 Status image saved to your DM!');
     }
+    
+    // Handle video status
+    if (quotedMessage.videoMessage) {
+      const videoCaption = quotedMessage.videoMessage.caption || 'Saved status video';
+      const videoBuffer = await client.downloadMediaMessage(quotedMessage);
+      
+      await client.sendMessage(
+        m.sender,
+        {
+          video: videoBuffer,
+          caption: `✅ Status saved!\n${videoCaption}`,
+          mimetype: 'video/mp4'
+        },
+        { quoted: m }
+      );
+      
+      return m.reply('🎥 Status video saved to your DM!');
+    }
+    
+    // If quoted message isn't media
+    return m.reply('Only image and video statuses can be saved!');
+    
+  } catch (error) {
+    console.error('Save error:', error);
+    return m.reply('Failed to save the status. Please try again later.');
   }
 }
-break;		      
+break;
 //========================================================================================================================//		      
 	      case 'gitclone': {
 		      if (!text) return m.reply(`Where is the link?`)
