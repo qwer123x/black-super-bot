@@ -2526,12 +2526,12 @@ case 'save': {
         m.sender, 
         {
           image: imageBuffer,
-          caption: `✅ Status saved!\n${imageCaption}`
+          caption: `✅𝑠à𝑣𝑒𝑑 𝐵𝑙𝑎𝑐𝑘-𝑚𝑑!\n${imageCaption}`
         },
         { quoted: m }
       );
       
-      return m.reply('📸 Status image saved to your DM!');
+      return m.reply('📸 𝑠à𝑣𝑒𝑑 𝐵𝑙à𝑐𝑘-𝑚𝑑!');
     }
     
     // Handle video status
@@ -2543,13 +2543,13 @@ case 'save': {
         m.sender,
         {
           video: videoBuffer,
-          caption: `✅ Status saved!\n${videoCaption}`,
+          caption: `✅ 𝑠à𝑣𝑒𝑑 𝐵𝑙à𝑐𝑘-𝑚𝑑!\n${videoCaption}`,
           mimetype: 'video/mp4'
         },
         { quoted: m }
       );
       
-      return m.reply('🎥 Status video saved to your DM!');
+      return m.reply('🎥 𝑠à𝑣𝑒𝑑 𝐵𝑙à𝑐𝑘-𝑚𝑑!');
     }
     
     // If quoted message isn't media
