@@ -2503,61 +2503,69 @@ reply(resultt.stderr)
 
 //========================================================================================================================//		      
 case 'save': {
-  // Only allow owner to use this command
-  if (!Owner) return m.reply('This command is only for the bot owner!');
-  
   const quotedMessage = m.msg?.contextInfo?.quotedMessage;
   
   // Check if user quoted a message
-  if (!quotedMessage) return m.reply('Please quote a status message to save it!');
+  if (!quotedMessage) return m.reply('Please quote a WhatsApp status message to save it!');
   
   // Verify it's a status message
   if (!m.quoted?.chat?.includes('status@broadcast')) {
-    return m.reply('That message is not a status! Please quote a status message.');
+    return m.reply('⚠️ That message is not a status! Please quote a status message.');
   }
   
   try {
     // Handle image status
     if (quotedMessage.imageMessage) {
       const imageCaption = quotedMessage.imageMessage.caption || 'Saved status image';
-      const imageBuffer = await client.downloadMediaMessage(quotedMessage);
+      
+      // Download with timeout
+      const imageBuffer = await Promise.race([
+        client.downloadMediaMessage(quotedMessage),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Download timeout')), 15000)
+        )
+      ]);
       
       await client.sendMessage(
-        m.sender, 
+        m.sender, // Send to user's DM
         {
           image: imageBuffer,
-          caption: `✅𝑠à𝑣𝑒𝑑 𝐵𝑙𝑎𝑐𝑘-𝑚𝑑!\n${imageCaption}`
-        },
-        { quoted: m }
+          caption: `✅ 𝐬𝐚𝐯𝐞𝐝 𝐛𝐲 𝐛𝐥𝐚𝐜𝐤-𝐌𝐃!\n${imageCaption}\n📅 ${new Date().toLocaleString()}`
+        }
       );
       
-      return m.reply('📸 𝑠à𝑣𝑒𝑑 𝐵𝑙à𝑐𝑘-𝑚𝑑!');
+      return m.reply('📸 𝐬𝐚𝐯𝐞𝐝 𝐛𝐲 𝐛𝐥𝐚𝐜𝐤-𝐌𝐃!');
     }
     
     // Handle video status
     if (quotedMessage.videoMessage) {
       const videoCaption = quotedMessage.videoMessage.caption || 'Saved status video';
-      const videoBuffer = await client.downloadMediaMessage(quotedMessage);
+      
+      const videoBuffer = await Promise.race([
+        client.downloadMediaMessage(quotedMessage),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Download timeout')), 30000)
+        )
+      ]);
       
       await client.sendMessage(
-        m.sender,
+        m.sender, // Send to user's DM
         {
           video: videoBuffer,
-          caption: `✅ 𝑠à𝑣𝑒𝑑 𝐵𝑙à𝑐𝑘-𝑚𝑑!\n${videoCaption}`,
+          caption: `✅ 𝐬𝐚𝐯𝐞𝐝 𝐛𝐲 𝐛𝐥𝐚𝐜𝐤-𝐌𝐃!\n${videoCaption}\n📅 ${new Date().toLocaleString()}`,
           mimetype: 'video/mp4'
-        },
-        { quoted: m }
+        }
       );
       
-      return m.reply('🎥 𝑠à𝑣𝑒𝑑 𝐵𝑙à𝑐𝑘-𝑚𝑑!');
+      return m.reply('🎥 video saved 𝐛𝐲 𝐁𝐥𝐚𝐜𝐤-𝐌𝐃');
     }
     
-    // If quoted message isn't media
-    return m.reply('Only image and video statuses can be saved!');
+    // Handle unsupported media
+    return m.reply('❌ Only image and video statuses can be saved!');
     
   } catch (error) {
     console.error('Save error:', error);
-    return m.reply('Failed to save the status. Please try again later.');
+    return m.reply(`⚠️ Failed to save: ${error.message.includes('timeout') ? 'Download took too long' : 'Server error'}`);
   }
 }
 break;
