@@ -2508,7 +2508,7 @@ case 'save': {
     
     // Check if user quoted a message
     if (!quotedMessage) {
-      return m.reply('❌ Please reply to a status message with *!save*');
+      return m.reply('❌ Please reply to a status message');
     }
     
     // Verify it's a status message
@@ -2554,7 +2554,7 @@ case 'save': {
     );
     
     // Confirm in chat
-    return m.reply(`✅ Status ${mediaType} saved to your DM!`);
+    return m.reply(`✅  ${mediaType} 𝐬𝐚𝐯𝐞𝐝 𝐛𝐥𝐚𝐜𝐤-𝐌𝐃!`);
     
   } catch (error) {
     console.error('Save error:', error);
