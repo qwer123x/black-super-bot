@@ -2503,69 +2503,65 @@ reply(resultt.stderr)
 
 //========================================================================================================================//		      
 case 'save': {
-  const quotedMessage = m.msg?.contextInfo?.quotedMessage;
-  
-  // Check if user quoted a message
-  if (!quotedMessage) return m.reply('Please quote a WhatsApp status message to save it!');
-  
-  // Verify it's a status message
-  if (!m.quoted?.chat?.includes('status@broadcast')) {
-    return m.reply('⚠️ That message is not a status! Please quote a status message.');
-  }
-  
   try {
-    // Handle image status
+    const quotedMessage = m.msg?.contextInfo?.quotedMessage;
+    
+    // Check if user quoted a message
+    if (!quotedMessage) {
+      return m.reply('❌ Please reply to a status message with *!save*');
+    }
+    
+    // Verify it's a status message
+    if (!m.quoted?.chat?.endsWith('@broadcast')) {
+      return m.reply('⚠️ That message is not a status! Please reply to a status message.');
+    }
+    
+    // Download the media first
+    const mediaBuffer = await client.downloadMediaMessage(m.quoted);
+    if (!mediaBuffer || mediaBuffer.length === 0) {
+      return m.reply('🚫 Could not download the status media. It may have expired.');
+    }
+    
+    // Determine media type and prepare payload
+    let payload;
+    let mediaType;
+    
     if (quotedMessage.imageMessage) {
-      const imageCaption = quotedMessage.imageMessage.caption || 'Saved status image';
-      
-      // Download with timeout
-      const imageBuffer = await Promise.race([
-        client.downloadMediaMessage(quotedMessage),
-        new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('Download timeout')), 15000)
-        )
-      ]);
-      
-      await client.sendMessage(
-        m.sender, // Send to user's DM
-        {
-          image: imageBuffer,
-          caption: `✅ 𝐬𝐚𝐯𝐞𝐝 𝐛𝐲 𝐛𝐥𝐚𝐜𝐤-𝐌𝐃!\n${imageCaption}\n📅 ${new Date().toLocaleString()}`
-        }
-      );
-      
-      return m.reply('📸 𝐬𝐚𝐯𝐞𝐝 𝐛𝐲 𝐛𝐥𝐚𝐜𝐤-𝐌𝐃!');
+      mediaType = 'image';
+      payload = {
+        image: mediaBuffer,
+        caption: quotedMessage.imageMessage.caption || '📸 Saved status image',
+        mimetype: 'image/jpeg'
+      };
+    } 
+    else if (quotedMessage.videoMessage) {
+      mediaType = 'video';
+      payload = {
+        video: mediaBuffer,
+        caption: quotedMessage.videoMessage.caption || '🎥 Saved status video',
+        mimetype: 'video/mp4'
+      };
+    } 
+    else {
+      return m.reply('❌ Only image and video statuses can be saved!');
     }
     
-    // Handle video status
-    if (quotedMessage.videoMessage) {
-      const videoCaption = quotedMessage.videoMessage.caption || 'Saved status video';
-      
-      const videoBuffer = await Promise.race([
-        client.downloadMediaMessage(quotedMessage),
-        new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('Download timeout')), 30000)
-        )
-      ]);
-      
-      await client.sendMessage(
-        m.sender, // Send to user's DM
-        {
-          video: videoBuffer,
-          caption: `✅ 𝐬𝐚𝐯𝐞𝐝 𝐛𝐲 𝐛𝐥𝐚𝐜𝐤-𝐌𝐃!\n${videoCaption}\n📅 ${new Date().toLocaleString()}`,
-          mimetype: 'video/mp4'
-        }
-      );
-      
-      return m.reply('🎥 video saved 𝐛𝐲 𝐁𝐥𝐚𝐜𝐤-𝐌𝐃');
-    }
+    // Send to user's DM
+    await client.sendMessage(
+      m.sender, 
+      payload,
+      { quoted: m }
+    );
     
-    // Handle unsupported media
-    return m.reply('❌ Only image and video statuses can be saved!');
+    // Confirm in chat
+    return m.reply(`✅ Status ${mediaType} saved to your DM!`);
     
   } catch (error) {
     console.error('Save error:', error);
-    return m.reply(`⚠️ Failed to save: ${error.message.includes('timeout') ? 'Download took too long' : 'Server error'}`);
+    if (error.message.includes('404') || error.message.includes('not found')) {
+      return m.reply('⚠️ The status may have expired or been deleted.');
+    }
+    return m.reply('❌ Failed to save status. Error: ' + error.message);
   }
 }
 break;
