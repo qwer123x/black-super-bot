@@ -1808,30 +1808,7 @@ m.reply("*Wait a moment...*");
 		break;
 	
 //========================================================================================================================//		      
-case 'privnote': {
-  try {
-    // Check if message has arguments
-    if (!m.args || m.args.length === 0) {
-      return m.reply('❌ Please provide a note! Example: /privnote This is my secret');
-    }
 
-    const note = m.args.join(' ');
-    const noteId = crypto.randomBytes(16).toString('hex');
-    
-    // Store with TTL (Redis recommended)
-    await redis.setex(`note:${noteId}`, 3600, note); // Expires in 1 hour
-    
-    await client.sendMessage(m.sender, {
-      text: `📝 *Private Note*\n\nThis message will self-destruct after reading:\n\nhttps://yourbot.com/note/${noteId}`
-    });
-    
-    return m.reply('🔒 Note created! Check your DMs for the secret link.');
-  } catch (err) {
-    console.error('Privnote error:', err);
-    return m.reply(`❌ Failed to create note. ${err.message.includes('ECONNREFUSED') ? 'Database connection failed' : 'Server error'}`);
-  }
-}
-break;
 //========================================================================================================================//
 	      case "blackmachant":
 		{
