@@ -2176,15 +2176,7 @@ m.reply("I am unable to analyze images at the moment\n" + e)
 		break;
 
 //========================================================================================================================//		      
-      case "blacks-md":
-		      const daddy = [ 'https://files.catbox.moe/yif0t1.mp4',
-                                'https://files.catbox.moe/o93jo6.mp4'
-				               ];
-		      const wife = daddy[Math.floor(Math.random() * daddy.length)];
-		      
- client.sendMessage(m.chat, { video: { url: wife }, caption: 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗺𝘆 𝗢𝘄𝗻𝗲𝗿 💠 254114283550 💠 𝗢𝗻𝗹𝘆 𝗗𝗺 𝘄𝗶𝘁𝗵 𝗮 𝗿𝗲𝗮𝘀𝗼𝗻😁 }, {quoted: m}); 
-  
- break;
+
 //========================================================================================================================//		      
 	      case "vision": {
 		      if (!msgR || !text) {
