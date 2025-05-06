@@ -2176,7 +2176,7 @@ m.reply("I am unable to analyze images at the moment\n" + e)
 		break;
 
 //========================================================================================================================//		      
-case "blacks-md": case "owner": 
+      case "blacks-md":
 		      const daddy = [ 'https://files.catbox.moe/yif0t1.mp4',
                                 'https://files.catbox.moe/o93jo6.mp4'
 				               ];
