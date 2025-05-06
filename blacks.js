@@ -1810,6 +1810,11 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 case 'privnote': {
   try {
+    // Check if message has arguments
+    if (!m.args || m.args.length === 0) {
+      return m.reply('❌ Please provide a note! Example: /privnote This is my secret');
+    }
+
     const note = m.args.join(' ');
     const noteId = crypto.randomBytes(16).toString('hex');
     
@@ -1820,12 +1825,13 @@ case 'privnote': {
       text: `📝 *Private Note*\n\nThis message will self-destruct after reading:\n\nhttps://yourbot.com/note/${noteId}`
     });
     
-    m.reply('🔒 Note created! Check your DMs for the secret link.');
+    return m.reply('🔒 Note created! Check your DMs for the secret link.');
   } catch (err) {
-    m.reply(`❌ Note error: ${err.message}`);
+    console.error('Privnote error:', err);
+    return m.reply(`❌ Failed to create note. ${err.message.includes('ECONNREFUSED') ? 'Database connection failed' : 'Server error'}`);
   }
 }
-break;	      
+break;
 //========================================================================================================================//
 	      case "blackmachant":
 		{
