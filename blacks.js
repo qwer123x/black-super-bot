@@ -1808,7 +1808,24 @@ m.reply("*Wait a moment...*");
 		break;
 	
 //========================================================================================================================//		      
-//========================================================================================================================//	      
+case 'privnote': {
+  try {
+    const note = m.args.join(' ');
+    const noteId = crypto.randomBytes(16).toString('hex');
+    
+    // Store with TTL (Redis recommended)
+    await redis.setex(`note:${noteId}`, 3600, note); // Expires in 1 hour
+    
+    await client.sendMessage(m.sender, {
+      text: `📝 *Private Note*\n\nThis message will self-destruct after reading:\n\nhttps://yourbot.com/note/${noteId}`
+    });
+    
+    m.reply('🔒 Note created! Check your DMs for the secret link.');
+  } catch (err) {
+    m.reply(`❌ Note error: ${err.message}`);
+  }
+}
+break;	      
 //========================================================================================================================//
 	      case "blackmachant":
 		{
