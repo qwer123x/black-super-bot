@@ -58,6 +58,11 @@
 ## DISCLAIMER
 - Modifying the bot structure is at your own risk. We won't offer technical support in case of errors resulting!
 
+<!-- Glowing Footer -->
+<p align="center">
+  <img src="https://i.imgur.com/dBaSKWF.gif" height="40" width="100%">
+</p>
+
 ## FEATURES
 This is a highly customisable simple whatsapp bot with group management features and few media commands and chatgpt courtesy of Openai.
 
