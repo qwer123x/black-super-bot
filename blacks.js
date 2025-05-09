@@ -621,18 +621,10 @@ reply(advice());
 console.log(advice());
 
 break;
-//========================================================================================================================//
-		      
-case "black-md": case "owner": 
-		      const daddy = [ 'https://files.catbox.moe/yif0t1.mp4',
-                                'https://files.catbox.moe/o93jo6.mp4'
-				               ];
-		      const wife = daddy[Math.floor(Math.random() * daddy.length)];
-		      
- client.sendMessage(m.chat, { video: { url: wife }, caption: `𝗛𝗲𝗿𝗲 𝗶𝘀 𝗺𝘆 𝗢𝘄𝗻𝗲𝗿 🚀 https://wa.me/message/4MX7ZQCAWRFBP1 🚀 𝗢𝗻𝗹𝘆 𝗗𝗺 𝘄𝗶𝘁𝗵 𝗮 𝗿𝗲𝗮𝘀𝗼𝗻🤏🏼`😎 }, {quoted: m}); 
-  
- break;
-
+//========================================================================================================================//		      
+case "owner":
+client.sendContact(from, maindev2, m)
+break;
 //========================================================================================================================//
 		      case "lyrics2": 
  try { 
