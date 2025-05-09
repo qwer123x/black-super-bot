@@ -67,7 +67,7 @@ async function startRaven() {
 
   const client = ravenConnect({
     logger: pino({ level: "silent" }),
-    printQRInTerminal: true,
+    printQRInTerminal: false,
     browser: ["BLACK - AI", "Safari", "5.1.7"],
     auth: state,
     syncFullHistory: true,
