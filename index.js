@@ -1,5 +1,4 @@
 /* If it works, don't  Fix it */
-
 const {
   default: ravenConnect,
   useMultiFileAuthState,
@@ -27,7 +26,6 @@ const _ = require("lodash");
 let lastTextTime = 0;
 const messageDelay = 5000;
 const Events = require('./action/events');
-//const authentication = require('./action/auth');
 const PhoneNumber = require("awesome-phonenumber");
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/ravenexif');
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/ravenfunc');
@@ -38,26 +36,25 @@ const color = (text, color) => {
 };
 
 async function authentication() {
-  if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
+  if (!fs.existsSync(__dirname + '/session/creds.json')) {
     if(!session) return console.log('Please add your session to SESSION env !!')
 const sessdata = session.replace("BLACK MD;;;", '');
 const filer = await File.fromURL(`https://mega.nz/file/${sessdata}`)
 filer.download((err, data) => {
 if(err) throw err
-fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
-console.log("Session Connected  successfully ✅")
-console.log("Ignore the qr code😕, wait fo 2 minutes for authentication process to complete✅️")
-})})}
-}
+fs.writeFile(__dirname + '/session/creds.json', data, () => {
+console.log("⌛️Connecting to Mega store to fetch a valid session⏳️")
+console.log("Ignore the QR CODE😕, wait for 2 minutes for authentication process to complete✅️")
+})})}}
 
 async function startRaven() {
           await authentication();  
-  const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/sessions/');
+  const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/session/');
   const { version, isLatest } = await fetchLatestBaileysVersion();
   console.log(`using WA v${version.join(".")}, isLatest: ${isLatest}`);
   console.log(
     color(
-      figlet.textSync("BLACKMACHANT-MD", {
+      figlet.textSync("BLACK-MD", {
         font: "Standard",
         horizontalLayout: "default",
         vertivalLayout: "default",
