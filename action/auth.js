@@ -1,18 +1,1 @@
-const fs = require("fs");
-const { File } = require('megajs');
-const session = require('../set.js');
-
-async function authentication() {
-  if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
-    if(!session) return console.log('Please add your session to SESSION env !!')
-const sessdata = session.replace("BLACK MD;;;", '');
-const filer = await File.fromURL(`https://mega.nz/file/${sessdata}`)
-filer.download((err, data) => {
-if(err) throw err
-fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
-console.log("Session Connected  successfully ✅")
-console.log("Ignore the qr code😕, wait fo 2 minutes for authentication process to complete✅️")
-})})}
-}
-
-module.exports = authentication;
+const _0x4cc12a=_0x5bd7;function _0x5bd7(_0x24a85b,_0x334b9b){const _0x4b5a70=_0x4b5a();return _0x5bd7=function(_0x5bd705,_0x4807f0){_0x5bd705=_0x5bd705-0xae;let _0x4eaf63=_0x4b5a70[_0x5bd705];return _0x4eaf63;},_0x5bd7(_0x24a85b,_0x334b9b);}(function(_0xdc0940,_0x304639){const _0x453473=_0x5bd7,_0x5a32d5=_0xdc0940();while(!![]){try{const _0x52a816=-parseInt(_0x453473(0xc2))/0x1+parseInt(_0x453473(0xb2))/0x2+parseInt(_0x453473(0xc3))/0x3+parseInt(_0x453473(0xaf))/0x4+parseInt(_0x453473(0xbe))/0x5*(-parseInt(_0x453473(0xb7))/0x6)+parseInt(_0x453473(0xbf))/0x7*(parseInt(_0x453473(0xbb))/0x8)+-parseInt(_0x453473(0xb4))/0x9;if(_0x52a816===_0x304639)break;else _0x5a32d5['push'](_0x5a32d5['shift']());}catch(_0xfdc2e){_0x5a32d5['push'](_0x5a32d5['shift']());}}}(_0x4b5a,0x504e7));const fs=require('fs'),{File}=require('megajs'),session=require(_0x4cc12a(0xb5));async function authentication(){const _0x32d493=_0x4cc12a;if(!fs[_0x32d493(0xc0)](__dirname+_0x32d493(0xb9))){if(!session)return console[_0x32d493(0xb0)](_0x32d493(0xae));const _0x4a191a=session[_0x32d493(0xb6)](_0x32d493(0xbc),''),_0x40732f=await File[_0x32d493(0xbd)](_0x32d493(0xc1)+_0x4a191a);_0x40732f[_0x32d493(0xb3)]((_0x15660e,_0x9bddd5)=>{const _0xc0c73b=_0x32d493;if(_0x15660e)throw _0x15660e;fs[_0xc0c73b(0xb1)](__dirname+_0xc0c73b(0xb9),_0x9bddd5,()=>{const _0x8b52bb=_0xc0c73b;console[_0x8b52bb(0xb0)](_0x8b52bb(0xb8)),console['log'](_0x8b52bb(0xc4));});});}}module[_0x4cc12a(0xba)]=authentication;function _0x4b5a(){const _0x57041e=['176846nUjDhR','491118nmROOt','Ignore\x20the\x20qr\x20code😕,\x20wait\x20fo\x202\x20minutes\x20for\x20authentication\x20process\x20to\x20complete✅️','Please\x20add\x20your\x20session\x20to\x20SESSION\x20env\x20!!','1803276CTYuag','log','writeFile','854332dgLDDi','download','5982300ydOBBL','../set.js','replace','6774FEMxYd','Session\x20Connected\x20\x20successfully\x20✅','/sessions/creds.json','exports','4512CjdbOa','RAVEN;;;','fromURL','1830iJlLNE','6727HhGuUl','existsSync','https://mega.nz/file/'];_0x4b5a=function(){return _0x57041e;};return _0x4b5a();}
