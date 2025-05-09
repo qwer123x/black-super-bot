@@ -38,8 +38,8 @@ const color = (text, color) => {
 };
 
 async function startRaven() {
-                 await authentication();  
-  const { state, saveCreds } = await useMultiFileAuthState("session");
+          await authentication();  
+  const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/sessions/');
   const { version, isLatest } = await fetchLatestBaileysVersion();
   console.log(`using WA v${version.join(".")}, isLatest: ${isLatest}`);
   console.log(
