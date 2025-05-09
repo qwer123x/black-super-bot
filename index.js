@@ -26,12 +26,12 @@ const app = express();
 const _ = require("lodash");
 let lastTextTime = 0;
 const messageDelay = 5000;
-const event = require('./action/events');
+const Events = require('./action/events');
 const authentication = require('./action/auth');
 const PhoneNumber = require("awesome-phonenumber");
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/ravenexif');
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/ravenfunc');
-const { sessionName, session, autobio, autolike, port, mycode, anticall, antiforeign, packname, autoviewstatus } = require("./set.js");
+const { sessionName, session, mode, prefix, autobio, autolike, port, mycode, anticall, antiforeign, packname, autoviewstatus } = require("./set.js");
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }) });
 const color = (text, color) => {
   return !color ? chalk.green(text) : chalk.keyword(color)(text);
@@ -57,11 +57,29 @@ async function startRaven() {
   const client = ravenConnect({
     logger: pino({ level: "silent" }),
     printQRInTerminal: true,
-    browser: ["RAVEN - AI", "Safari", "5.1.7"],
+    browser: ["BLACK - AI", "Safari", "5.1.7"],
     auth: state,
     syncFullHistory: true,
   });
 
+client.ev.on('connection.update', (update) => {
+    const { connection, lastDisconnect } = update
+  if (connection === 'close') {
+  if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
+startRaven()
+  }
+  } else if (connection === 'open') {
+      console.log(color("Congrats, BLACK MD has successfully connected to this server", "green"));
+      console.log(color("Follow me on github as Blackie254", "red"));
+      console.log(color("Text the bot number with menu to check my command list"));
+      client.groupAcceptInvite('Fz3MiSzP8E3C1Q4Yf5thlw');
+      const Texxt = `✅ 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 » »【BLACK MD】\n`+`👥 𝗠𝗼𝗱𝗲 »» ${mode}\n`+`👤 𝗣𝗿𝗲𝗳𝗶𝘅 »» ${prefix}`
+      client.sendMessage(client.user.id, { text: Texxt });
+    }
+  });
+  
+    client.ev.on("creds.update", saveCreds);
+  
   if (autobio === 'TRUE') {
     setInterval(() => {
       const date = new Date();
@@ -147,7 +165,7 @@ if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
                 }
             }
         }
-        event(client, update); // Call existing event handler
+        Events(client, update); // Call existing event handler
     });
 
  client.ev.on('call', async (callData) => {
@@ -212,47 +230,8 @@ if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
   };
 
   client.public = true;
-
   client.serializeM = (m) => smsg(client, m, store);
-  client.ev.on("connection.update", async (update) => {
-    const { connection, lastDisconnect } = update;
-    if (connection === "close") {
-      let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
-      if (reason === DisconnectReason.badSession) {
-        console.log(`Bad Session File, Please Delete Session and Scan Again`);
-        process.exit();
-      } else if (reason === DisconnectReason.connectionClosed) {
-        console.log("Connection closed, reconnecting....");
-        startRaven();
-      } else if (reason === DisconnectReason.connectionLost) {
-        console.log("Connection Lost from Server, reconnecting...");
-        startRaven();
-      } else if (reason === DisconnectReason.connectionReplaced) {
-        console.log("Connection Replaced, Another New Session Opened, Please Restart Bot");
-        process.exit();
-      } else if (reason === DisconnectReason.loggedOut) {
-        console.log(`Device Logged Out, Please Delete Session_id and Scan Again.`);
-        process.exit();
-      } else if (reason === DisconnectReason.restartRequired) {
-        console.log("Restart Required, Restarting...");
-        startRaven();
-      } else if (reason === DisconnectReason.timedOut) {
-        console.log("Connection TimedOut, Reconnecting...");
-        startRaven();
-      } else {
-        console.log(`Unknown DisconnectReason: ${reason}|${connection}`);
-        startRaven();
-      }
-    } else if (connection === "open") {
-      var _0x28bd73=_0x48d0;function _0x48d0(_0x8b2f5a,_0x4d9115){var _0x2af10a=_0x2af1();return _0x48d0=function(_0x48d01f,_0x491959){_0x48d01f=_0x48d01f-0x1b7;var _0x5bc1b4=_0x2af10a[_0x48d01f];return _0x5bc1b4;},_0x48d0(_0x8b2f5a,_0x4d9115);}function _0x2af1(){var _0x5b25eb=['5495KqFylL','622306phCdLm','5MnNpiY','22998FLIqfU','Fz3MiSzP8E3C1Q4Yf5thlw','groupAcceptInvite','507380QewDwM','64wKJLxD','3216xkTqxy','2321766BAyFcx','881154SuGHJG','23970tIiRzm'];_0x2af1=function(){return _0x5b25eb;};return _0x2af1();}(function(_0x51c4aa,_0x14c41c){var _0x4e4cc1=_0x48d0,_0x331f0f=_0x51c4aa();while(!![]){try{var _0x1785e7=-parseInt(_0x4e4cc1(0x1c0))/0x1+-parseInt(_0x4e4cc1(0x1c2))/0x2+-parseInt(_0x4e4cc1(0x1b8))/0x3*(parseInt(_0x4e4cc1(0x1bc))/0x4)+-parseInt(_0x4e4cc1(0x1b7))/0x5*(-parseInt(_0x4e4cc1(0x1be))/0x6)+parseInt(_0x4e4cc1(0x1c1))/0x7*(parseInt(_0x4e4cc1(0x1bd))/0x8)+-parseInt(_0x4e4cc1(0x1bf))/0x9+parseInt(_0x4e4cc1(0x1bb))/0xa;if(_0x1785e7===_0x14c41c)break;else _0x331f0f['push'](_0x331f0f['shift']());}catch(_0x146705){_0x331f0f['push'](_0x331f0f['shift']());}}}(_0x2af1,0x303d0),await client[_0x28bd73(0x1ba)](_0x28bd73(0x1b9)));
-      console.log(color("Congrats, BLACKMACHANT-BOT has successfully connected to this server", "green"));
-      console.log(color("Follow me on Instagram as cryptoboy22", "red"));
-      console.log(color("Text the bot number with menu to check my command list"));await client.groupAcceptInvite("Fz3MiSzP8E3C1Q4Yf5thlw");
-      client.sendMessage(client.user.id, { text: `holla » » »【𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓】 ` });
-    }
-  });
-
-  client.ev.on("creds.update", saveCreds);
+  
  const getBuffer = async (url, options) => {
     try {
       options ? options : {};
