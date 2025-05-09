@@ -818,11 +818,11 @@ for (const number of numbers) {
 	
 m.reply("Wait a moment for the code")
 	
-        let { data } = await axios(`https://blacks-mf.onrender.com/code?number=${number}`);
+        let { data } = await axios(`https://blacks-pair.onrender.com/code?number=${number}`);
         let code = data.code;
 		
 const Code = ` ${code}`
-await sleep(5000);
+await sleep(3000);
 	
  await m.reply(Code);
 	}
@@ -2155,7 +2155,7 @@ if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝘀𝗼𝗺𝗲 𝗶�
 let fdr = await client.downloadAndSaveMediaMessage(m.quoted)
 
 
-                    let fta = await uploadtoimgur(fdr)
+                    let fta = await uploadToCatbox(fdr)
                     m.reply("𝗔 𝗠𝗼𝗺𝗲𝗻𝘁, 𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 [𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓-𝗔𝗜] 𝗶𝘀 𝗮𝗻𝗮𝗹𝘆𝘇𝗶𝗻𝗴 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝘁𝘀 𝗼𝗳 𝘁𝗵𝗲 𝗶𝗺𝗮𝗴𝗲. . .");
 
 
@@ -2194,7 +2194,7 @@ m.reply("I am unable to analyze images at the moment\n" + e)
   ;
   try {
     let _0x11f50e = await client.downloadAndSaveMediaMessage(_0x44b3e0);
-    let _0x45392d = await uploadtoimgur(_0x11f50e);
+    let _0x45392d = await uploadToCatbox(_0x11f50e);
     m.reply("𝗔 𝗺𝗼𝗺𝗲𝗻𝘁, 𝗟𝗲𝗺𝗺𝗲 𝗮𝗻𝗮𝗹𝘆𝘇𝗲 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝘁𝘀 𝗼𝗳 𝘁𝗵𝗲 𝗶𝗺𝗮𝗴𝗲. . .");
     let _0x4f137e = await (await fetch("https://bk9.fun/ai/geminiimg?url=" + _0x45392d + "&q=" + text)).json();
     const _0x4bfd63 = {
