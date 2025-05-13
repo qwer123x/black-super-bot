@@ -838,56 +838,45 @@ case 'quran': {
  }
   break;
 //========================================================================================================================//
-	      case "song": {
-const yts = require("yt-search");
-const fetch = require("node-fetch"); 
-
-  try {   
-    if (!text) {
-      return m.reply("What song you want to download.");
+  case "song": {		      
+ if (!args || args.length === 0) {
+      return client.sendMessage(from, { text: 'Please provide a song name.' }, { quoted: m });
     }
 
-    let search = await yts(text);
-    if (!search.all.length) {
-      return reply("No results found for your query.");
+try {
+      const searchQuery = args.join(' ');
+      const searchResults = await yts(searchQuery);
+      const videos = searchResults.videos;
+
+if (!videos || videos.length === 0) {
+        return client.sendMessage(from, { text: 'No results found on YouTube.' }, { quoted: message });
+      }
+	 
+m.reply("_Please wait your download is in progress_");
+	 
+      const video = videos[0];
+      const videoId = video.videoId;
+      const mp3Url = `${BASE_URL}/dipto/ytDl3?link=${videoId}&format=mp3`;
+
+      const mp3Response = await axios.get(mp3Url);
+      const mp3Data = mp3Response.data;
+
+if (mp3Data.success !== 'true' || !mp3Data.downloadLink) {
+        return client.sendMessage(from, { text: 'Failed to retrieve MP3 download link.' }, { quoted: m });
+      }
+
+await client.sendMessage(from, {
+          audio: { url: mp3Data.downloadLink },
+          mimetype: 'audio/mpeg',
+          ptt: false
+        }, { quoted: m });
+	    
+    } catch (error) {
+      console.error('Error:', error);
+      await client.sendMessage(from, { text: 'An error occurred while processing your request.' }, { quoted: m });
     }
-    let link = search.all[0].url; 
-
-    const apiUrl = `https://keith-api.vercel.app/download/dlmp3?url=${link}`;
-
-    let response = await fetch(apiUrl);
-    let data = await response.json();
-
-    if (data.status && data.result) {
-      const audioData = {
-        title: data.result.title,
-        downloadUrl: data.result.downloadUrl,
-        thumbnail: search.all[0].thumbnail,
-        format: data.result.format,
-        quality: data.result.quality,
-      };
-
-await client.sendMessage(
-        m.chat,
-        {
-          audio: { url: audioData.downloadUrl },
-          mimetype: "audio/mp4",
-        },
-        { quoted: m }
-      );
-
-      return;
-    } else {
-      
-      return reply("Unable to fetch the song. Please try again later.");
-    }
-  } catch (error) {
-    
-    return reply(`An error occurred: `);
   }
-}
-	break;
-
+break;
 //========================================================================================================================//
 		      
 //========================================================================================================================//	
@@ -994,23 +983,55 @@ await client.sendMessage(
 //========================================================================================================================//		      
 //========================================================================================================================//		      
 //========================================================================================================================//
-	      case 'video': {
-const yts = require("yt-search");
-const fetch = require("node-fetch"); 
-
-  try { 
-    if (!text) {
-      return sendReply(client, m, "Please specify the video you want to download.");
+case "video": {		      
+if (!args || args.length === 0) {
+      return client.sendMessage(from, { text: 'Please provide a video name you want to download.' }, { quoted: m });
     }
+
+try {
+      const searchQuery = args.join(' ');
+      const searchResults = await yts(searchQuery);
+      const videos = searchResults.videos;
+
+      if (!videos || videos.length === 0) {
+        return client.sendMessage(from, { text: 'No results found on YouTube.' }, { quoted: m });
+      }
+	    
+m.reply("_Please wait your download is in progress_");
+	    
+      const video = videos[0];
+      const videoId = video.videoId;
+      const mp4Url = `${BASE_URL}/dipto/ytDl3?link=${videoId}&format=mp4`;
+
+      // Download and send MP4
+      const mp4Response = await axios.get(mp4Url);
+      const mp4Data = mp4Response.data;
+
+ if (mp4Data.success !== 'true' || !mp4Data.downloadLink) {
+        return client.sendMessage(chatId, { text: 'Failed to retrieve MP4 download link.' }, { quoted: m });
+      }
+
+      await client.sendMessage(from, {
+        video: { url: mp4Data.downloadLink },
+        mimetype: 'video/mp4',
+        caption: "𝘿𝙊𝙒𝙉𝙇𝙊𝘼𝘿𝙀𝘿 𝘽𝙔 𝘽𝙇𝘼𝘾𝙆-𝙈𝘿",
+      }, { quoted: m });
+    } catch (error) {
+      console.error('Error:', error);
+      await client.sendMessage(from, { text: 'An error occurred while processing your request.' }, { quoted: m });
+    }
+  }
+  break;
+
+//========================================================================================================================//		      
+   case 'video2': { 
+    if (!text) reply("What video you want to download?");
  
+ try { 
     let search = await yts(text);
-    if (!search.all.length) {
-      return sendReply(client, m, "No results found for your query.");
-    }
+    if (!search.all.length) reply("No results found for your query.");
     let link = search.all[0].url; 
-
     const apiUrl = `https://apis-keith.vercel.app/download/dlmp4?url=${link}`;
-
     let response = await fetch(apiUrl);
     let data = await response.json();
 
@@ -1023,30 +1044,24 @@ const fetch = require("node-fetch");
         quality: data.result.quality,
       };
 
-      await client.sendMessage(
+ await client.sendMessage(
         m.chat,
         {
           video: { url: videoData.downloadUrl },
           mimetype: "video/mp4",
-          caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓",
+          caption: "𝘿𝙊𝙒𝙉𝙇𝙊𝘼𝘿𝙀𝘿 𝘽𝙔 𝘽𝙇𝘼𝘾𝙆-𝙈𝘿",
         },
         { quoted: m }
       );
-
       return;
     } else {
-      
-      return reply(client, m, "Unable to fetch the video. Please try again later.");
+      return reply("Unable to fetch the video. Please try again later.");
     }
   } catch (error) {
- 
-    return reply(client, m, `An error occurred: ${error.message}`);
+    return reply(`An error occurred: ${error.message}`);
   }
 };
   break;
-
-//========================================================================================================================//		      
-//========================================================================================================================//
 //========================================================================================================================//		      
 	      case "update": case "redeploy": {
 		      const axios = require('axios');
