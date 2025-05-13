@@ -155,7 +155,7 @@ async function handleMessageRevocation(client, revocationMessage) {
 
     if (deletedBy.includes(client.user.id) || sentBy.includes(client.user.id)) return;
 
-    let notificationText = `░𝙃𝙤𝙡𝙡𝙖...𝘽𝙇𝘼𝘾𝙆-𝙈𝘿 𝘼𝙉𝙏𝙄𝘿𝙀𝙇𝙀𝙏𝙀 𝙍𝙀𝙋𝙊░\n\n` +
+    let notificationText = `░𝙃𝙤𝙡𝙡𝙖...𝘽𝙇𝘼𝘾𝙆-𝙈𝘿 𝘼𝙉𝙏𝙄𝘿𝙀𝙇𝙀𝙏𝙀░\n\n` +
       ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n\n`;
 
     try {
