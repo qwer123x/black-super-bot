@@ -15,6 +15,7 @@ const messageDelay = 3000;
 const { DateTime } = require('luxon');
 const uploadtoimgur = require('./lib/imgur');
 const advice = require("badadvice");
+const BASE_URL = 'https://noobs-api.top';
 const {c, cpp, node, python, java} = require('compile-run');
 const acrcloud = require("acrcloud"); 
 const ytdl = require("ytdl-core");
