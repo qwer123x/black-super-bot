@@ -210,7 +210,7 @@ contextInfo: {
           externalAdReply: {
           title: notificationText,
           body: `DELETED BY: ${deletedByFormatted}`,
-          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
+          thumbnailUrl: "https://files.catbox.moe/0ykpd2.jpeg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: true
@@ -253,7 +253,7 @@ contextInfo: {
           externalAdReply: {
           title: notificationText,
           body: `DELETED BY: ${deletedByFormatted}`,
-          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
+          thumbnailUrl: "https://files.catbox.moe/0ykpd2.jpeg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: true
