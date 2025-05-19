@@ -4,7 +4,7 @@ const {
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
-  makeInMemoryStore,
+  makeCacheableSignalKeyStore,
   downloadContentFromMessage,
   jidDecode,
   proto,
@@ -31,7 +31,7 @@ const PhoneNumber = require("awesome-phonenumber");
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/ravenexif');
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/ravenfunc');
 const { sessionName, session, mode, prefix, autobio, autolike, port, mycode, anticall, antiforeign, packname, autoviewstatus } = require("./set.js");
-const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }) });
+const store = makeCacheableSignalKeyStore({ logger: pino().child({ level: "silent", stream: "store" }) });
 const color = (text, color) => {
   return !color ? chalk.green(text) : chalk.keyword(color)(text);
 };
@@ -101,7 +101,6 @@ startRaven()
     }, 10 * 1000);
   }
 
-  store.bind(client.ev);
 
   client.ev.on("messages.upsert", async (chatUpdate) => {
     try {
