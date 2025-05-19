@@ -20,13 +20,13 @@ const express = require("express");
 const chalk = require("chalk");
 const FileType = require("file-type");
 const figlet = require("figlet");
-//const { File } = require('megajs');
+const { File } = require('megajs');
 const app = express();
 const _ = require("lodash");
 let lastTextTime = 0;
 const messageDelay = 5000;
 const Events = require('./action/events');
-const authentication = require('./action/auth');
+//const authentication = require('./action/auth');
 const PhoneNumber = require("awesome-phonenumber");
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/ravenexif');
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/ravenfunc');
@@ -35,6 +35,19 @@ const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream
 const color = (text, color) => {
   return !color ? chalk.green(text) : chalk.keyword(color)(text);
 };
+
+async function authentication() {
+  if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
+    if(!session) return console.log('Please add your session to SESSION env !!')
+const sessdata = session.replace("BLACK MD;;;", '');
+const filer = await File.fromURL(`https://mega.nz/file/${sessdata}`)
+filer.download((err, data) => {
+if(err) throw err
+fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
+console.log("Session downloaded successfully✅️")
+console.log("Connecting to WhatsApp ⏳️, Hold on for 3 minutes⌚️")
+})})}
+}
 
 async function startRaven() {
        await authentication();  
