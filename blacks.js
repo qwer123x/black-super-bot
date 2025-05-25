@@ -322,7 +322,7 @@ if (budy.startsWith('>')) {
  } 
 //========================================================================================================================// 
 async function mp3d () {	
-let { key } = await client.sendMessage(m.chat, {audio: fs.readFileSync('./Media/black.mp3'), mimetype:'audio/mp4', ptt: true}, {quoted: m })
+let { key } = await client.sendMessage(m.chat, {audio: fs.readFileSync('./Media/champe.mp3'), mimetype:'audio/mp4', ptt: true}, {quoted: m })
 
 }
 //========================================================================================================================// 
