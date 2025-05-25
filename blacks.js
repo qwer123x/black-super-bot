@@ -687,7 +687,7 @@ if (menu === 'VIDEO') {
 client.sendMessage(from, { text: cap}, {quoted: m})
 
 } else if (menu === 'IMAGE') {
-client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/0ykpd2.jpeg' }, caption: cap, fileLength: "9999999999"}, { quoted: m })
+client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/93yyg6.png' }, caption: cap, fileLength: "9999999999"}, { quoted: m })
 } else if (menu === 'LINK') {
 client.sendMessage(m.chat, {
                         text: cap,
