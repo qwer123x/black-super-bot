@@ -322,7 +322,7 @@ if (budy.startsWith('>')) {
  } 
 //========================================================================================================================// 
 async function mp3d () {	
-let { key } = await client.sendMessage(m.chat, {audio: fs.readFileSync('./Media/champe.mp3'), mimetype:'audio/mp4', ptt: true}, {quoted: m })
+let { key } = await client.sendMessage(m.chat, {audio: fs.readFileSync('./Media/kv.mp3'), mimetype:'audio/mp4', ptt: true}, {quoted: m })
 
 }
 //========================================================================================================================// 
@@ -687,7 +687,7 @@ if (menu === 'VIDEO') {
 client.sendMessage(from, { text: cap}, {quoted: m})
 
 } else if (menu === 'IMAGE') {
-client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/93yyg6.png' }, caption: cap, fileLength: "9999999999"}, { quoted: m })
+client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/df3v0j.jpg' }, caption: cap, fileLength: "9999999999"}, { quoted: m })
 } else if (menu === 'LINK') {
 client.sendMessage(m.chat, {
                         text: cap,
