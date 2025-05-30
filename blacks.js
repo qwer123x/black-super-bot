@@ -3814,7 +3814,8 @@ break;
 case 'sc': case 'script': case 'repo':
 
  client.sendMessage(m.chat, { image: { url: `https://files.catbox.moe/5grvn3.jpg` }, caption: 
-` 𝙃𝙀𝙇𝙇𝙊👋 *${pushname}*,╔══≪ ✦ ≫══════════≪ ✦ ≫══╗
+` 𝙃𝙀𝙇𝙇𝙊👋 *${pushname}*,
+╔══≪ ✦ ≫══════════≪ ✦ ≫══╗
           𝐁𝐋𝐀𝐂𝐊-𝐌𝐃 𝐕3
  The Ultimate WhatsApp Bot
 ╚══≪ ✦ ≫══════════≪ ✦ ≫══╝\n\n🔷 𝐆𝐢𝐭𝐇𝐮𝐛 𝐑𝐞𝐩𝐨:
