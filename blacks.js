@@ -881,7 +881,7 @@ break;
 		      
 //========================================================================================================================//	
 case "pair": case "rent": {
-if (!q) return await reply("Please provide valid Whatsapp number  Example- pair 25411428XXX");
+if (!q) return await reply("𝐡𝐨𝐥𝐥𝐚 𝐩𝐥𝐞𝐚𝐬𝐞 𝐩𝐫𝐨𝐯𝐢𝐝𝐞 𝐚 𝐯𝐚𝐥𝐢𝐝 𝐰𝐡𝐚𝐭𝐬𝐚𝐩𝐩 𝐧𝐮𝐦𝐛𝐞𝐫 𝐦𝐦𝐡... 𝐄𝐱𝐚𝐦𝐩𝐥𝐞- pair 25411428XXX");
 
 	try {	
 const numbers = q.split(',') .map((v) => v.replace(/[^0-9]/g, '')) 
@@ -899,7 +899,7 @@ for (const number of numbers) {
                 return m.reply(`That number is not registered on WhatsApp❗️`);
 	    }
 	
-m.reply("Wait a moment for the code")
+m.reply("𝐰𝐚𝐢𝐭 𝐚 𝐦𝐨𝐦𝐞𝐧𝐭 𝐟𝐨𝐫 𝐁𝐥𝐚𝐜𝐤 𝐌𝐃 𝐩𝐚𝐢𝐫 𝐜𝐨𝐝𝐞")
 	
         let { data } = await axios(`https://blacks-pair.onrender.com/code?number=${number}`);
         let code = data.code;
