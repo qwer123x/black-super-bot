@@ -104,7 +104,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
     })()
   : sender;
      const isAdmin = m.isGroup ? groupAdmin.includes(groupSender) : false;
-     const Owner = owner.map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender)
+     const Owner = DevRaven.map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender)
      const maindev = '254114283550';
      const maindev2 = maindev.split(",");
      const date = new Date()  
