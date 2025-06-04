@@ -30,10 +30,6 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
     var body =
       m.mtype === "conversation"
         ? m.message.conversation
-        : m.mtype == "imageMessage"
-       ? m.message.imageMessage.caption
-        : m.mtype == "videoMessage"
-        ? m.message.videoMessage.caption
         : m.mtype == "extendedTextMessage"
         ? m.message.extendedTextMessage.text
         : m.mtype == "buttonsResponseMessage"
@@ -83,16 +79,32 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
     const qmsg = (quoted.msg || quoted);
     const cmd = body.startsWith(prefix);
     const badword = bad.split(",");
-    const Owner = DevRaven.map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
     
 //========================================================================================================================//		      
 //========================================================================================================================//	      
-     const groupMetadata = m.isGroup ? await client.groupMetadata(m.chat).catch((e) => {}) : "";
-     const groupName = m.isGroup && groupMetadata ? await groupMetadata.subject : "";
-     const participants = m.isGroup && groupMetadata ? await groupMetadata.participants : ""; 
-     const groupAdmin = m.isGroup ? await getGroupAdmins(participants) : ""; 
-     const isBotAdmin = m.isGroup ? groupAdmin.includes(botNumber) : false; 
-     const isAdmin = m.isGroup ? groupAdmin.includes(m.sender) : false;
+     const groupMetadata = m.isGroup ? await client.groupMetadata(m.chat).catch((e) => { }) : "";  
+    const groupName = m.isGroup && groupMetadata ? await groupMetadata.subject : "";  
+    const participants = m.isGroup && groupMetadata
+  ? groupMetadata.participants
+      .filter(p => p.pn)
+      .map(p => p.pn)
+  : [];
+    const groupAdmin = m.isGroup
+  ? groupMetadata.participants
+      .filter(p => p.admin && p.pn)
+      .map(p => p.pn)
+  : [];
+    const isBotAdmin = m.isGroup ? groupAdmin.includes(botNumber) : false; 
+	const groupSender = m.isGroup && groupMetadata
+  ? (() => {
+      const found = groupMetadata.participants.find(p => 
+        p.id === sender || client.decodeJid(p.id) === client.decodeJid(sender)
+      );
+      return found?.pn || sender;
+    })()
+  : sender;
+     const isAdmin = m.isGroup ? groupAdmin.includes(groupSender) : false;
+     const Owner = owner.map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender)
      const maindev = '254114283550';
      const maindev2 = maindev.split(",");
      const date = new Date()  
