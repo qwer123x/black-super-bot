@@ -334,7 +334,7 @@ if (budy.startsWith('>')) {
  } 
 //========================================================================================================================// 
 async function mp3d () {	
-let { key } = await client.sendMessage(m.chat, {audio: fs.readFileSync('./Media/kv.mp3'), mimetype:'audio/mp4', ptt: true}, {quoted: m })
+let { key } = await client.sendMessage(m.chat, {audio: fs.readFileSync('./Media/ponk.mp3'), mimetype:'audio/mp4', ptt: true}, {quoted: m })
 
 }
 //========================================================================================================================// 
@@ -476,7 +476,7 @@ if (antilinkall === 'TRUE' && body.includes('https://') && !Owner && isBotAdmin 
 		      
 
 let cap = `𝗛𝗲𝘆 𝘁𝗵𝗲𝗿𝗲😊, ${getGreeting()}\n\n╔═━════━【𝐁𝐋𝐀𝐂𝐊-𝐌𝐃】━════━╗
-║ ⚡ 𝙒𝘼𝙍𝙍𝙄𝙊𝙍 𝘽𝙊𝙏 𝙄𝙉𝙏𝙀𝙍𝙁𝘼𝘾𝙀 ⚡         
+║   𝐁𝐈𝐍𝐀𝐑𝐘 𝐁𝐋𝐎𝐎𝐃𝐋𝐈𝐍𝐄         
 ╟───────────────────────╢
 ║ ✦ 𝗨𝘀𝗲𝗿: ${m.pushName}
 ║ ✦ 𝗣𝗿𝗲𝗳𝗶𝘅 : ${prefix}
@@ -689,7 +689,7 @@ let cap = `𝗛𝗲𝘆 𝘁𝗵𝗲𝗿𝗲😊, ${getGreeting()}\n\n╔═━�
 if (menu === 'VIDEO') {
 
                    client.sendMessage(m.chat, {
-                        video: fs.readFileSync('./Media/menu.mp4'),
+                        video: fs.readFileSync('./Media/blacky.mp4'),
                         caption: cap,
                         gifPlayback: true
                     }, {
