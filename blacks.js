@@ -851,7 +851,7 @@ case 'quran': {
  }
   break;
 //========================================================================================================================//
-  case "song": {		      
+  case "play": {		      
  if (!args || args.length === 0) {
       return client.sendMessage(from, { text: 'Please provide a song name.' }, { quoted: m });
     }
@@ -1145,7 +1145,7 @@ let options = []
 		break;
 
 //========================================================================================================================//		      
-	      case 'play':{
+	      case 'song':{
 const axios = require('axios');
 const yts = require("yt-search");
 const ffmpeg = require("fluent-ffmpeg");
@@ -1194,7 +1194,7 @@ const path = require("path");
                 {
                   document: { url: outputPath },
                   mimetype: "audio/mp3",
-		  caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓",
+		  caption: "𝔇𝔬𝔴𝔫𝔩𝔬𝔞𝔡𝔢𝔡 𝔟𝔶>>>𝐁𝐋𝐀𝐂𝐊-𝐌𝐃 𝐁𝐎𝐓",
                   fileName: outputFileName,
                 },
                 { quoted: m }
