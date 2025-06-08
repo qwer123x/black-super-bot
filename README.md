@@ -83,7 +83,7 @@ Our AI features use random APIs to run, so sometimes they may be down.
 Linking/Pairing:
 ## ` Pair onrender`
 <p align="centre">
-<a href="https://blackie-md-ifgg.onrender.com"><img height= "37" title="Author" src="https://img.shields.io/badge/Session-green?style=for-the-badge&logo=render"></a>
+<a href="https://blacks-pair.onrender.com"><img height= "37" title="Author" src="https://img.shields.io/badge/Session-green?style=for-the-badge&logo=render"></a>
 <p/>
             
 <!-- Glowing Footer -->
