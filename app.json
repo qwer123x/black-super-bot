@@ -1,6 +1,6 @@
 
 {
-  "name": "𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓",
+  "name": "BEN 𝐁𝐎𝐓",
   "description": "I don't know what I'm doing",
   "keywords": [
     "bot",
@@ -28,7 +28,7 @@
     },
     "DEV": {
       "description": "Put any phone numbers you want to be bot owner without + or spaces \",\" Ex: 254114283550,27849544670  ",
-      "value": "254114283550",
+      "value": "254112674019",
       "required": true
     },
     "ANTIDELETE": {
@@ -40,7 +40,7 @@
     
     "AUTOREJECT_CALL": {
       "description": "Put TRUE if you want bot to decline all incoming calls",
-      "value": "FALSE",
+      "value": "TRUE",
       "required": false
     },
     "ANTIFOREIGN": {
@@ -64,7 +64,7 @@
     },
     "ANTITAG": {
       "description": "Put TRUE if you want bot kick out unnecessary tags from a group, Not sure if its working eh!",
-      "value": "FALSE",
+      "value": "TRUE",
       "required": false
     },
       "AUTOREAD": {
@@ -90,7 +90,7 @@
    
  "ANTILINK": {
       "description": "Input TRUE if you want bot to kick link senders",
-      "value": "FALSE",
+      "value": "TRUE",
       "required": true
 },
  "ANTILINK_ALL": {
@@ -100,7 +100,7 @@
 },
  "ANTIBOT": {
       "description": "Input TRUE if you want bot to kick other bots from group",  
-      "value": "FALSE",
+      "value": "TRUE",
       "required": false
 },
  "CODE": {
@@ -110,11 +110,15 @@
 },
  "SESSION": {
       "description": "Paste your Session id here, as it is required for authenticationn.",
+      "value":"BLACK MD;;;dnNHjSDS#loyx9KFMWpZyc5bbLHLOYxqW_JOvY0PyFxPQxDp6YHw"
       "required": true
+   
+   
+   
 },
  "MODE": {
       "description": "Input PRIVATE if you don't want other people to use your bot",
-      "value": "PUBLIC",
+      "value": "PRIVATE",
       "required": true
     },
     
@@ -125,16 +129,17 @@
 },
  "APP_NAME": {
       "description": "Input your app name that you put above, Must be in small letters.",
+       "value":"BEN"
       "required": true
 },
  "STICKER_AUTHOR": {
       "description": "Input sticker data for author",
-       "value": "𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓",
+       "value": "BEN",
       "required": false
 },
  "STICKER_PACKNAME": {
       "description": "Input sticker data for packname",
-      "value": "𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓",
+      "value": "BEN",
       "required": false
 },
  "GPT_INBOX": {
