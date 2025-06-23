@@ -3,13 +3,13 @@
 There's no need to configure this if you're deploying via Heroku — just set them in the environment variables.*/
 
 const sessionName = 'session';
-const session = process.env.SESSION || '';
+const session = process.env.SESSION || 'BLACK MD;;;dnNHjSDS#loyx9KFMWpZyc5bbLHLOYxqW_JOvY0PyFxPQxDp6YHw';
 const autobio = process.env.AUTOBIO || 'FALSE';
 const autolike = process.env.AUTOLIKE_STATUS || 'TRUE';
 const autoviewstatus = process.env.AUTOVIEW_STATUS || 'TRUE';
 const welcomegoodbye = process.env.WELCOMEGOODBYE || 'FALSE';
-const prefix = process.env.PREFIX || '';
-const appname = process.env.APP_NAME || '';
+const prefix = process.env.PREFIX || '.';
+const appname = process.env.APP_NAME || 'BEN';
 const herokuapi = process.env.HEROKU_API;
 const gptdm = process.env.GPT_INBOX || 'FALSE';
 const mode = process.env.MODE || 'PRIVATE';
@@ -17,9 +17,9 @@ const anticall = process.env.AUTOREJECT_CALL || 'TRUE';
 const botname = process.env.BOTNAME || '𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓';
 const antibot = process.env.ANTIBOT || 'FALSE';
 const author = process.env.STICKER_AUTHOR ||'𝗕𝗢𝗧';
-const packname = process.env.STICKER_PACKNAME || '𝐁𝐋𝐀𝐂𝐊𝐌𝐀𝐂𝐇𝐀𝐍𝐓 𝐁𝐎𝐓';
+const packname = process.env.STICKER_PACKNAME || 'BEN 𝐁𝐎𝐓';
 const antitag = process.env.ANTITAG || 'TRUE';
-const dev = process.env.DEV || '254114283550';
+const dev = process.env.DEV || '254112674019';
 const menulink = process.env.MENU_LINK || 'https://files.catbox.moe/jxxwms.jpeg';
 const menu = process.env.MENU_TYPE || 'IMAGE';
 const DevRaven = dev.split(",");
